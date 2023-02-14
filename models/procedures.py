@@ -10,12 +10,8 @@ class Procedure(BaseModel, Base):
     ''' Object representation of a procedure '''
     __tablename__ = "procedures"
     name = Column(String(128), nullable=False)
-
-    patient_id = Column(Integer, ForeignKey("patients.id"), nullable=False)
-    patients = relationship("Patient", backref="procedures")
-
-    theatre_id = Column(Integer, ForeignKey("theatres.id"), nullable=False)
-    theatres = relationship("Theatre", backref="procedures")
+    patients = relationship("Patient", backref="procedure")
+    theatres = relationship("Theatre", backref="procedure")
     
     def __init__(self, *args, **kwargs):
         ''' Initializes the procedure '''

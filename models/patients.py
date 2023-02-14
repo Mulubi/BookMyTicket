@@ -11,12 +11,8 @@ class Patient(BaseModel, Base):
     __tablename__ = "patients"
     name = Column(String(128), nullable=False)
     contact_info = Column(Integer())
-
-    theatre_id = Column(Integer, ForeignKey("theatres.id"), nullable=False)
-    theatres = relationship("Theatre", backref="patients")
-
+    theatres = relationship("Theatre", backref="patient")
     procedure_id = Column(String(128), ForeignKey("procedures.id"), nullable=False)
-    procedures = relationship("Procedure", backref="patients", cascade="all, delete, delete-orphan")
 
     def __init__(self, *args, **kwargs):
         ''' Initializes the patient '''

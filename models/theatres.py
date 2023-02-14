@@ -15,10 +15,10 @@ class Theatre(BaseModel, Base):
     procedure_id = Column(String(128), ForeignKey("procedures.id"), nullable=False)
     anaesthetist_id = Column(String(128), ForeignKey("anaesthetists.id"), nullable=False)
 
-    patients = relationship("Patient", backref="theatres", cascade="all, delete, delete-orphaned")
-    procedures = relationship("Procedure", backref="theatres", cascade="all, delete, delete-orphaned")
-    surgeons = relationship("Surgeon", backref="theatres", cascade="all, delete, delete-orphaned")
-    anaesthetists = relationship("Anaesthetist", backref="theatres", cascade="all, delete, delete-orphaned")
+    patients = relationship("Patient", backref="theatre", cascade="all, delete, delete-orphaned")
+    procedures = relationship("Procedure", backref="theatre", cascade="all, delete, delete-orphaned")
+    surgeons = relationship("Surgeon", backref="theatre", cascade="all, delete, delete-orphaned")
+    anaesthetists = relationship("Anaesthetist", backref="theatre", cascade="all, delete, delete-orphaned")
 
     def __init__(self, *args, **kwargs):
         ''' Initializes the theatre '''

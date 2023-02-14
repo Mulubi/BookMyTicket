@@ -11,9 +11,7 @@ class Surgeon(BaseModel, Base):
     __tablename__ = "surgeons"
     name = Column(String(128), nullable=False)
     contact_info = Column(Integer())
-
-    theatre_id = Column(Integer, ForeignKey("theatres.id"), nullable=False)
-    theatres = relationship("Theatre", backref="surgeons")
+    theatres = relationship("Theatre", backref="surgeon")
     
     def __init__(self, *args, **kwargs):
         ''' Initializes the surgeon '''
