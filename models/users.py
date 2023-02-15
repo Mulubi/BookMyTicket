@@ -8,10 +8,13 @@ class User(BaseModel, Base):
     ''' Object representation of a user '''
     __tablename__ = "users"
     first_name = Column(String(128), nullable=False)
-    last_name = Column(String(128), nullable=False)
+    last_name = Column(String(128), unique=True, nullable=False)
     email = Column(String(128), nullable=False)
     password_hash = Column(String(128), nullable=False)
 
+    def __repr__(self)":
+        return f"User('{self.first_name}', '{self.last_name}', '{self.email}')"
+    
     def __init__(self, *args, **kwargs):
         ''' Initializes the user '''
         super().__init__(*args, **kwargs)
