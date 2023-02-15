@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bookMyTicket</title>
+    <link rel="shortcut icon" href="images/newLogo.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  </head>
+</head>
+<body style="overflow-x: hidden;">
+    <nav class="navbar fixed-top shadow">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="images/newLogo.png">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <!--span class="navbar-toggler-icon"></span-->
+            <i class="bi bi-filter"></i>
+          </button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Theatre Lists</a>
+                </li>
+              </ul>
+              <form class="d-flex mt-3" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    <section class="pt-4 pt-md-11">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-5 col-lg-6 order-md-2" id="img-el">
+                    <img src="images/new.jpg" class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                </div>
+                <div class="col-12 col-md-7 col-lg-6 order-md-1 mt-2" id="text-box">
+                    <h5 class="display-6 text-center text-md-center aos-init aos-animate" data-aos="fade-up">Welcome to 
+                        <span class="text-primary">bookMyTicket</span>
+                        <br>
+                    Automating theatre bookings.</h5>
+                    <p class="lead text-center text-md-center text-muted mt-3">The easiest way to book a theatre session and view the current theatre lists.</p>
+                    <div class="text-md-center text-center mt-5">
+                        <a href="" class="btn btn-primary shadow lift me-1">Theatre Lists</a>
+                        <a href="" class="btn btn-primary-soft shadow lift">Get started --></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="mt-5 mx-2">
+        <div class="row align-items-center mx-1">
+            <div class="col-12 col-md-4 align-items-center m-auto">
+                <i class="bi bi-check-circle" style="color: blue; font-size: 2em;"></i>
+                <h4 class="text-center">Designed to be modern</h4>
+                <p class="text-center lead mt-2">BookMyTicket incorporates modern technology to automate the process of generating theatre lists.</p>
+            </div>
+            <div class="col-12 col-md-4">
+                <i class="bi bi-columns-gap" style="color: blue; font-size: 2em;"></i>
+                <h4 class="text-center">Flexible</h4>
+                <p class="text-center lead mt-2">This system allows the administrator to make changes by updating, adding and deleting theatre lists which are updated instantly.</p>
+            </div>
+            <div class="col-12 col-md-4">
+                <i class="bi bi-clipboard-check" style="color: blue; font-size: 2em;"></i>
+                <h4 class="text-center">Convenience</h4>
+                <p class="text-center lead mt-2">Once the lists are generated, they can be viewed individually and conveniently</p>
+            </div>
+        </div>
+    </section>
+    <section class="mt-5 bg-light pt-12 pt-md-13 mx-2">
+        <div class="row align-items-center mx-1">
+            <div class="col-12 col-md-5 col-lg-5 order-md-1">
+                <img src="images/focus.png" class="img-fluid mb-6 mb-md-0">
+            </div>
+            <div class="col-12 col-md-5 col-lg-7 order-md-2 align-content-center align-items-center">
+                <h6 class="display-6 text-center">Stay focused on the patient
+                    <br>
+                    <span class="text-primary">Handle automated lists</span>
+                </h6>
+                <p class="lead text-center">You have a lot to plan let's help you automate theatre lists generation</p>
+                <div class="flex-column text-center mx-2">
+                    <div class="pe-5">
+                        <h4 class="mb-0 display-6">100%</h4>
+                        <h6 class="mb-0">Satisfaction</h6>
+                    </div>
+                    <div class="px-5">
+                        <h4 class="mb-0 display-6" on>24/7</h4>
+                        <h6 class="mb-0">Support</h6>
+                    </div>
+                    <div class="ps-5">
+                        <h4 class="mb-0 display-6">50
+                        </h4>
+                        <h6 class="mb-0">Users</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class=" bg-dark">
+        <div class="row mt-4 mx-4">
+            <div class="col-4 mt-4">
+                <img src="images/newLogo.png">
+            </div>
+            <div class="col-4"></div>
+            <div class="col-4"></div>
+        </div>
+        <div id="footerLinks" style="text-align:center; color:#ffffff">
+            Copyright@bookMyTicket <script type="text/javascript"> document.write(new Date().getFullYear());</script>. All rights reserved.
+          </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>
