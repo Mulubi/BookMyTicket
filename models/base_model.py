@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """
 Contains class BaseModel
 """
@@ -13,7 +12,7 @@ import uuid
 
 time = "%Y-%m-%dT%H:%M:%S.%f"
 
-if models.storage_t == "db":
+if models.storage_type == "db":
     Base = declarative_base()
 else:
     Base = object
@@ -21,10 +20,10 @@ else:
 
 class BaseModel:
     """The BaseModel class from which future classes will be derived"""
-    if models.storage_t == "db":
-        id = Column(String(60), primary_key=True)
-        created_at = Column(DateTime, default=datetime.utcnow)
-        updated_at = Column(DateTime, default=datetime.utcnow)
+    if models.storage_type == "db":
+        id = Column(String(128), primary_key=True)
+        created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+        updated_at = Column(DateTime, default=datetime.utcnow, nullable=False)
 
     def __init__(self, *args, **kwargs):
         """Initialization of the base model"""
