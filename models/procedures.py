@@ -12,9 +12,9 @@ class Procedure(BaseModel, Base):
         __tablename__ = "procedures"
         name = Column(String(128), unique=True, nullable=False)
         # patients = relationship("Patient", backref="procedure")
-        # theatres = relationship("Theatre", backref="procedure")
+        # theatres = relationship("Theatre", backref="procedure", lazy=True)
         # theatre_id = Column(String(128), ForeignKey("theatres.id"), nullable=False)
-        # patients = relationship("Patient", backref="procedure", lazy=True)
+        patients = relationship("Patient", backref="procedure", lazy=True)
     else:
         name = ""
 

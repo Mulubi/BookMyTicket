@@ -14,7 +14,7 @@ class Patient(BaseModel, Base):
         contact_info = Column(String(50))
         # theatres = relationship("Theatre", backref="patient")
         # theatre_id = Column(String(128), ForeignKey("theatres.id"), nullable=False)
-        # procedure_id = Column(String(128), ForeignKey("procedures.id"), nullable=False)
+        procedure = Column(String(128), ForeignKey("procedures.id"), nullable=False)
     else:
         name = ""
         contact_info = ""
