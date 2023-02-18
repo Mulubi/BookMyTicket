@@ -23,12 +23,16 @@ class BaseModel:
     """The BaseModel class from which future classes will be derived"""
     if models.storage_type == "db":
         __abstract__ = True
-        query_class = query.Query
+
         id = Column(String(128), primary_key=True)
         created_at = Column(
             DateTime, default=datetime.utcnow, nullable=False)
         updated_at = Column(
             DateTime, default=datetime.utcnow, nullable=False)
+
+    @classmethod
+    def get(cls, id):
+        return cls.query.get(id)
 
     def __init__(self, *args, **kwargs):
         """Initialization of the base model"""

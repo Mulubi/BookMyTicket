@@ -1,6 +1,6 @@
-from config import app
+from Flask_BMT import app
 from flask import Flask, render_template, url_for, flash, redirect
-from forms import RegistrationForm, LoginForm
+from Flask_BMT.forms import RegistrationForm, LoginForm
 
 
 @app.route('/register', methods=['GET', 'POST'])

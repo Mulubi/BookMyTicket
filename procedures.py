@@ -14,7 +14,7 @@ class Procedure(BaseModel, Base):
         # patients = relationship("Patient", backref="procedure")
         # theatres = relationship("Theatre", backref="procedure", lazy=True)
         # theatre_id = Column(String(128), ForeignKey("theatres.id"), nullable=False)
-        patients = relationship("Patient", backref="procedures", lazy=True)
+        patients = relationship("Patient", backref="procedure", lazy=True)
     else:
         name = ""
 
