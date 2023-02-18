@@ -8,6 +8,7 @@ from os import getenv
 import sqlalchemy
 from sqlalchemy import Column, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import query
 import uuid
 
 time = "%Y-%m-%dT%H:%M:%S.%f"
@@ -21,9 +22,13 @@ else:
 class BaseModel:
     """The BaseModel class from which future classes will be derived"""
     if models.storage_type == "db":
+        __abstract__ = True
+        query_class = query.Query
         id = Column(String(128), primary_key=True)
-        created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
-        updated_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+        created_at = Column(
+            DateTime, default=datetime.utcnow, nullable=False)
+        updated_at = Column(
+            DateTime, default=datetime.utcnow, nullable=False)
 
     def __init__(self, *args, **kwargs):
         """Initialization of the base model"""

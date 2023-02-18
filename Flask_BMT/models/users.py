@@ -1,4 +1,5 @@
 ''' Holds the class User '''
+import models
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, DateTime
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -6,15 +7,21 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 class User(BaseModel, Base):
     ''' Object representation of a user '''
-    __tablename__ = "users"
-    first_name = Column(String(128), nullable=False)
-    last_name = Column(String(128), unique=True, nullable=False)
-    email = Column(String(128), nullable=False)
-    password_hash = Column(String(128), nullable=False)
+    if models.storage_type == 'db':
+        __tablename__ = "users"
+        first_name = Column(String(128), nullable=False)
+        last_name = Column(String(128), unique=True, nullable=False)
+        email = Column(String(128), nullable=False)
+        password_hash = Column(String(128), nullable=False)
+    else:
+        first_name = ""
+        last_name = ""
+        email = ""
+        password_hash = ""
 
     def __repr__(self):
         return f"User('{self.first_name}', '{self.last_name}', '{self.email}')"
-    
+
     def __init__(self, *args, **kwargs):
         ''' Initializes the user '''
         super().__init__(*args, **kwargs)

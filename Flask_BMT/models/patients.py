@@ -8,12 +8,16 @@ from sqlalchemy.orm import relationship
 
 class Patient(BaseModel, Base):
     ''' Object representation of a patient '''
-    __tablename__ = "patients"
-    name = Column(String(128), unique=True, nullable=False)
-    contact_info = Column(Integer())
-    #theatres = relationship("Theatre", backref="patient")
-    theatre_id = Column(String(128), ForeignKey("theatres.id"), nullable=False)
-    procedure_id = Column(String(128), ForeignKey("procedures.id"), nullable=False)
+    if models.storage_type == 'db':
+        __tablename__ = "patients"
+        name = Column(String(128), unique=True, nullable=False)
+        contact_info = Column(String(50))
+        # theatres = relationship("Theatre", backref="patient")
+        # theatre_id = Column(String(128), ForeignKey("theatres.id"), nullable=False)
+        # procedure_id = Column(String(128), ForeignKey("procedures.id"), nullable=False)
+    else:
+        name = ""
+        contact_info = ""
 
     def __repr__(self):
         return f"Patient('{self.name}', '{self.contact_info}', '{self.procedure_id}')"

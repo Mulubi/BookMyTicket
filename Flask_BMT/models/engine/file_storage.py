@@ -1,6 +1,7 @@
 ''' Contains the File_storage class '''
 
 import models
+from models.base_model import BaseModel, Base
 from models.patients import Patient
 from models.procedures import Procedure
 from models.surgeons import Surgeon
@@ -11,8 +12,8 @@ from os import getenv
 from hashlib import md5
 
 classes = {"Patient": Patient, "Procedure": Procedure,
-		   "Surgeon": Surgeon, "Theatre": Theatre,
-		   "User": User, "Anaesthetist": Anaesthetist}
+           "Surgeon": Surgeon, "Theatre": Theatre,
+           "User": User, "Anaesthetist": Anaesthetist}
 
 
 class FileStorage:
@@ -56,7 +57,7 @@ class FileStorage:
                 jo = json.load(f)
             for key in jo:
                 self.__objects[key] = classes[jo[key]["__class__"]](**jo[key])
-        except:
+        except Exception:
             pass
 
     def delete(self, obj=None):
