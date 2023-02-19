@@ -1,16 +1,32 @@
-from models.base_model import BaseModel, Base
-from models.patients import Patient
-from models.procedures import Procedure
-from models.surgeons import Surgeon
-from models.theatres import Theatre
-from models.users import User
-from models.anaesthetists import Anaesthetist
-from Flask_BMT import app, db
+import os
 
 
-@app.shell_context_processor
-def make_shell_context():
-    return dict(db=db, Patient=Patient, Procedure=Procedure)
+# basedir = os.path.abspath(os.path.dirname(__file__))
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port='5000', debug=True)
+class Config:
+    SECRET_KEY = '41ed75074dc9acfc44d3ca8ab3d6477f'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    @staticmethod
+    def init_app(app):
+        pass
+
+class DevelopmentConfig(Config):
+    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'
+    # 'SQLALCHEMY_DATABASE_URI' = 'sqlite:///' + os.path.join(basedir, 'site.db')
+
+class TestingConfig(Config):
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite://'
+
+class ProductionConfig(Config):
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'
+
+config = {
+    'development': DevelopmentConfig,
+    'testing': TestingConfig,
+    'production': ProductionConfig,
+
+    'default': DevelopmentConfig
+}

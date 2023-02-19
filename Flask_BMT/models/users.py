@@ -1,6 +1,6 @@
 ''' Holds the class User '''
-import models
-from models.base_model import BaseModel, Base
+from Flask_BMT import db, models
+from Flask_BMT.models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, DateTime
 from werkzeug.security import generate_password_hash, check_password_hash
 

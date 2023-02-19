@@ -1,6 +1,5 @@
 ''' Holds the class Patient '''
-import models
-from Flask_BMT import db
+from Flask_BMT import db, models
 # from models import base_model
 from .base_model import BaseModel, Base
 import sqlalchemy

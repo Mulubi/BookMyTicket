@@ -1,16 +1,22 @@
-import os
-from flask import Flask
+from flask import Flask, render_template
+from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
+from config import config
 
-app = Flask(__name__)
+bootstrap = Bootstrap()
+db = SQLAlchemy()
 
-# basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SECRET_KEY'] = '41ed75074dc9acfc44d3ca8ab3d6477f'
+def create_app(config_name):
+	app = Flask(__name__)
+	app.config.from_object(config[config_name])
+	config[config_name].init_app(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+	bootstrap.init_app(app)
+	db.init_app(app)
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'site.db')
-db = SQLAlchemy(app)
+	from Flask_BMT.main import auth, errors, views
 
-from Flask_BMT import auth, routes
+	from .main import main as main_blueprint
+	app.register_blueprint(main_blueprint)
 
+	return app

@@ -1,9 +1,8 @@
 """
 Contains class BaseModel
 """
-from Flask_BMT import db
+from Flask_BMT import db, models
 from datetime import datetime
-import models
 from os import getenv
 import sqlalchemy
 from sqlalchemy import Column, String, DateTime
