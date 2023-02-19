@@ -1,7 +1,7 @@
 """
 Contains class BaseModel
 """
-
+from Flask_BMT import db
 from datetime import datetime
 import models
 from os import getenv
@@ -19,15 +19,13 @@ else:
     Base = object
 
 
-class BaseModel:
+class BaseModel():
     """The BaseModel class from which future classes will be derived"""
     if models.storage_type == "db":
-        __abstract__ = True
-
-        id = Column(String(128), primary_key=True)
-        created_at = Column(
+        id = db.Column(db.String(128), primary_key=True)
+        created_at = db.Column(
             DateTime, default=datetime.utcnow, nullable=False)
-        updated_at = Column(
+        updated_at = db.Column(
             DateTime, default=datetime.utcnow, nullable=False)
 
     @classmethod

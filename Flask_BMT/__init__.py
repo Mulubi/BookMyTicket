@@ -13,3 +13,4 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
 
 from Flask_BMT import auth, routes
+

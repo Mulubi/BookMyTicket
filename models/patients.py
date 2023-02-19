@@ -1,5 +1,7 @@
 ''' Holds the class Patient '''
 import models
+from Flask_BMT import db
+# from models import base_model
 from .base_model import BaseModel, Base
 import sqlalchemy
 from sqlalchemy import Column, String, Integer, ForeignKey
@@ -10,11 +12,12 @@ class Patient(BaseModel, Base):
     ''' Object representation of a patient '''
     if models.storage_type == 'db':
         __tablename__ = "patients"
-        name = Column(String(128), unique=True, nullable=False)
-        contact_info = Column(String(50))
+        name = db.Column(db.String(128), unique=True, nullable=False)
+        contact_info = db.Column(db.String(50))
         # theatres = relationship("Theatre", backref="patient")
         # theatre_id = Column(String(128), ForeignKey("theatres.id"), nullable=False)
-        procedure = Column(String(128), ForeignKey("procedures.id"), nullable=False)
+        # current_procedure = relationship("Procedure", backref="current_patient")
+        procedure_id = db.Column(db.String(128), db.ForeignKey("procedures.id"), nullable=False)
     else:
         name = ""
         contact_info = ""

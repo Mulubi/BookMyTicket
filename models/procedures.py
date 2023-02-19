@@ -1,5 +1,6 @@
 ''' Holds the class Procedure '''
 import models
+from Flask_BMT import db
 from .base_model import BaseModel, Base
 import sqlalchemy
 from sqlalchemy import Column, String, ForeignKey
@@ -10,11 +11,11 @@ class Procedure(BaseModel, Base):
     ''' Object representation of a procedure '''
     if models.storage_type == 'db':
         __tablename__ = "procedures"
-        name = Column(String(128), unique=True, nullable=False)
+        name = db.Column(String(128), unique=True, nullable=False)
         # patients = relationship("Patient", backref="procedure")
         # theatres = relationship("Theatre", backref="procedure", lazy=True)
         # theatre_id = Column(String(128), ForeignKey("theatres.id"), nullable=False)
-        patients = relationship("Patient", backref="procedures", lazy=True)
+        patients = db.relationship("Patient", backref="procedure", lazy=True)
     else:
         name = ""
 

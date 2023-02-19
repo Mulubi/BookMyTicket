@@ -13,3 +13,7 @@ def home():
 @app.route('/about')
 def about_page():
     return render_template("about.html", title="About-page")
+
+@app.route('/user/<username>')
+def user(username):
+    return '<h1> Hello, {}!</h1>'.format(username)
