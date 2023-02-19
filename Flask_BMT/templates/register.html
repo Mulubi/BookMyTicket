@@ -6,7 +6,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up Form</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="./static/styles/styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,100;1,400&family=Sofia+Sans:wght@1;200;300;400;500;600;700;800;900;1000&display=swap');
+* {
+  font-family: 'Sofia Sans', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  text-decoration: none;
+  padding:0;
+}
+body {
+  background-color: #293855;
+  display: grid;
+  place-items: center;
+  font-family: 'Sofia Sans', sans-serif;
+  min-height: 100vh;
+
+}
+
+   
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    margin:40px;
+    border-radius: 5px;
+    background-color:#ffffffff;
+    color: #293855;
+     }
+  label {
+    color:#293855;
+  }
+  label,
+  input[type="submit"] {
+    width: 100%;
+    padding: 0.5em;
+    margin-top: 1em;
+  }
+  .inputBox {
+    display: flex;
+    flex-direction: column;
+    width:100%;
+}
+  input[type="text"],
+  input[type="password"]
+   {
+    width: 100%;
+    padding: 0.5em;
+    margin-top: 1em;
+    border-radius: 5px;
+    border: 1px solid gray;
+  }
+
+  .inputBox.success input {
+    border-color: #09c372;
+    border-width: 2px;
+}
+
+.inputBox.error input {
+    border-color: #ff3860;
+    border-width: 2px;
+    
+}
+
+   /* sign-up form*/
+  .form form {
+    box-shadow: inset 1px 2px 2px #293855, -1px -2px 2px #293855;
+    width:400px;
+    border: 1px solid rgb(0, 0, .1);
+    gap:5px;
+    justify-content: center;
+   
+    
+  }
+  ::placeholder{
+    font-size:0.8em;
+  }
+  .form form input {
+    width: 100%;
+    display: block;
+  }
+  input:focus {
+    outline: none;
+  }
+  
+  .form form select {
+    
+    width: 100%;    
+    height:35px;
+    border-radius: 4px;
+    
+    color: rgb(0, 0, .6);
+  }
+
+  .submitButton input[type='submit'] {
+    width: 200px;
+    height: 40px;
+    border: transparent;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 1s;
+
+  }
+
+  .submitButton input[type='submit']:hover{
+    transform: scale(1.12);
+  }
+    </style>
    
 </head>
 <body>
@@ -57,7 +174,7 @@
                     </div>
 
                     <div class="login">
-                        <a href="./login-form.html">Do you have an account? Sign In</a>
+                        <a href="./login.html">Do you have an account? Sign In</a>
                     </div>
                     <div class="submitButton">
                         <input type="submit" value="Sign Up" name="signButton" class="btn btn-primary" onclick="signup()">
@@ -69,8 +186,101 @@
             </div>
         </div>
     </div>
+    <script>
+        function signup() {
+
+
+
+const form = document.querySelector('#form');
+const userName = document.querySelector('#userName');
+const email = document.querySelector('#email');
+const employeeId = document.querySelector('#employeeId');
+const password1 = document.querySelector('#password1');
+const password2 = document.querySelector('#password2');
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+
+    validateInputs();
+});
+
+    const setError = (element, message) => {
+        const inputBox = element.parentElement;
+        const errorDisplay = inputBox.querySelector('.error');
+    
+        errorDisplay.innerText = message;
+        inputBox.classList.add('error');
+        inputBox.classList.remove('success')
+    }
+    
+    const setSuccess = element => {
+        const inputBox = element.parentElement;
+        const errorDisplay = inputBox.querySelector('.error');
+    
+        errorDisplay.innerText = '';
+        inputBox.classList.add('success');
+        inputBox.classList.remove('error');
+    };
+    
+    const isValidEmail = email => {
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+    
+    const validateInputs = () => {
+        const userNameValue = userName.value.trim();
+        const emailValue = email.value.trim();
+        const password1Value = password1.value.trim();
+        const password2Value = password2.value.trim();
+    
+        if(userNameValue === '') {
+            setError(userName, 'Username is required');
+        } else {
+            setSuccess(userName);
+        }
+    
+        if(emailValue === '') {
+            setError(email, 'Email is required');
+        } else if (!isValidEmail(emailValue)) {
+            setError(email, 'Provide a valid email address');
+        } else {
+            setSuccess(email);
+        }
+    
+        if(password1Value === '') {
+            setError(password1, 'Password is required');
+        } else if (password1Value.length < 8 ) {
+            setError(password1, 'Password must be at least 8 character.')
+        } else {
+            setSuccess(password1);
+        }
+    
+        if(password2Value === '') {
+            setError(password2, 'Please confirm your password');
+        } else if (password2Value !== password1Value) {
+            setError(password2, "Passwords doesn't match");
+        } else {
+            setSuccess(password2);
+          
+        }
+    
+ 
+    
+    };
+
+              
+        if (document.querySelectorAll('.success').length === 4) {
+            window.location.replace("login.html");
+          }
+   
+  
+  
+}
+
+    </script>
    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
+   
 </body>
 </html>
