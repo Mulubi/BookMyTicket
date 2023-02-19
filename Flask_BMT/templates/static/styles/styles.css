@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,100;1,400&family=Sofia+Sans:wght@1;200;300;400;500;600;700;800;900;1000&display=swap');
+* {
+  font-family: 'Sofia Sans', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  text-decoration: none;
+  padding:0;
+}
+body {
+  background-color: #293855;
+  display: grid;
+  place-items: center;
+  font-family: 'Sofia Sans', sans-serif;
+  min-height: 100vh;
+
+}
+
+   
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    margin:40px;
+    border-radius: 5px;
+    background-color:#ffffffff;
+    color: #293855;
+     }
+  label {
+    color:#293855;
+  }
+  label,
+  input[type="submit"] {
+    width: 100%;
+    padding: 0.5em;
+    margin-top: 1em;
+  }
+  .inputBox {
+    display: flex;
+    flex-direction: column;
+    width:100%;
+}
+  input[type="text"],
+  input[type="password"]
+   {
+    width: 100%;
+    padding: 0.5em;
+    margin-top: 1em;
+    border-radius: 5px;
+    border: 1px solid gray;
+  }
+
+  .inputBox.success input {
+    border-color: #09c372;
+    border-width: 2px;
+}
+
+.inputBox.error input {
+    border-color: #ff3860;
+    border-width: 2px;
+    
+}
+
+   /* sign-up form*/
+  .form form {
+    box-shadow: inset 1px 2px 2px #293855, -1px -2px 2px #293855;
+    width:400px;
+    border: 1px solid rgb(0, 0, .1);
+    gap:5px;
+    justify-content: center;
+   
+    
+  }
+  ::placeholder{
+    font-size:0.8em;
+  }
+  .form form input {
+    width: 100%;
+    display: block;
+  }
+  input:focus {
+    outline: none;
+  }
+  
+  .form form select {
+    
+    width: 100%;    
+    height:35px;
+    border-radius: 4px;
+    
+    color: rgb(0, 0, .6);
+  }
+
+  .submitButton input[type='submit'] {
+    width: 200px;
+    height: 40px;
+    border: transparent;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 1s;
+
+  }
+
+  .submitButton input[type='submit']:hover{
+    transform: scale(1.12);
+  }
+
+
+  /* login-form */
+  .login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  
+  
+  .form-login input {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-login button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .form button:hover {
+    background-color: #3e8e41;
+  }
+  
+  .error-message {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .success-message {
+    color: green;
+    font-weight: bold;
+  }
+  
+  /* admin-panel */
+
+  
+.admin-panel {
+	margin: auto;
+	max-width: 800px;
+	padding: 20px;
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.form-admin {
+	margin-bottom: 20px;
+}
+
+input, textarea {
+	display: block;
+	margin-bottom: 10px;
+	padding: 5px;
+	width: 100%;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.admin-button {
+	background-color: #4CAF50;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+	margin-top: 10px;
+}
+
+.admmin-button:hover {
+	background-color: #3e8e41;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: left;
+}
+
+th {
+	background-color: #4CAF50;
+	color: white;
+}
+
+#procedure-list {
+	margin-top: 20px;
+}
