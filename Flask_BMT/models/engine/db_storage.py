@@ -1,13 +1,12 @@
 ''' contains the DBStorage class '''
 
-import models
-from models.base_model import BaseModel, Base
-from models.patients import Patient
-from models.procedures import Procedure
-from models.surgeons import Surgeon
-from models.theatres import Theatre
-from models.users import User
-from models.anaesthetists import Anaesthetist
+from ..base_model import BaseModel, Base
+from ..patients import Patient
+from ..procedures import Procedure
+from ..surgeons import Surgeon
+from ..theatres import Theatre
+from ..users import User
+from ..anaesthetists import Anaesthetist
 from os import getenv
 import sqlalchemy
 from sqlalchemy import create_engine

@@ -1,6 +1,6 @@
 ''' Holds the class Anaesthetist '''
 from Flask_BMT import db, models
-from .base_model import BaseModel, Base
+from .base_model import BaseModel, Base, BaseModelMixin
 import sqlalchemy
 from sqlalchemy import Column, String, Integer, ForeignKey
 from sqlalchemy.orm import relationship

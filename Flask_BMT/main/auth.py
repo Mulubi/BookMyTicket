@@ -10,9 +10,13 @@ from flask import Flask, render_template, url_for, flash, redirect
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        flash(f'Account created for {form.username.data}!', 'success')
-        return redirect(url_for('home'))
-    return render_template("register.html", title="Registration Page", form=form)
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+        db.session.add(User)
+        db.session.commit()
+        flash(f"Your account has been created successfully!", "success")
+        return redirect(url_for("login"))
+    return render_template("register.html", form=form, title="Registration-page")
 
 
 @main.route('/login', methods=['GET', 'POST'])
@@ -24,4 +28,7 @@ def login():
             # return redirect(url_for('home'))
         # else:
             # flash(f'Login Unsuccessful. Please check username and password', 'danger')
-    return render_template("login.html", title="Login Page", form=form)
+    return redirect(url_for("home"))
+    return render_template("login.html", form=form, title="Login-page")
+
+    
