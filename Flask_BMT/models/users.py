@@ -1,18 +1,19 @@
 ''' Holds the class User '''
 from Flask_BMT import db, models
-from Flask_BMT.models.base_model import BaseModel, Base
+from Flask_BMT.models.base_model import BaseModel, Base, BaseModelMixin
 from sqlalchemy import Column, String, DateTime
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-class User(BaseModel, Base):
+class User(db.Model, BaseModelMixin):
     ''' Object representation of a user '''
+    __abstract__ = True
     if models.storage_type == 'db':
         __tablename__ = "users"
-        first_name = Column(String(128), nullable=False)
-        last_name = Column(String(128), unique=True, nullable=False)
-        email = Column(String(128), nullable=False)
-        password_hash = Column(String(128), nullable=False)
+        first_name = db.Column(db.String(128), nullable=False)
+        last_name = db.Column(db.String(128), unique=True, nullable=False)
+        email = db.Column(String(128), nullable=False)
+        password_hash = db.Column(db.String(128), nullable=False)
     else:
         first_name = ""
         last_name = ""

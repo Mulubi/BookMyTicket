@@ -4,10 +4,10 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField("Username", validators=[DataRequired(), Length(min=2, max=20)])
-    email = StringField("Email", validators=[DataRequired(), Email()])
-    password = PasswordField("Password", validators=[DataRequired()])
-    confirm_password = PasswordField("Confirm_Password", validators=[DataRequired(), EqualTo("Password")])
+    username = StringField(label="Username", validators=[DataRequired(), Length(min=2, max=20)])
+    email = StringField(label="Email Address", validators=[DataRequired(), Email()])
+    password = PasswordField(label="Password", validators=[DataRequired()])
+    confirm_password = PasswordField(label="Confirm_Password", validators=[DataRequired(), EqualTo("Password")])
     submit = SubmitField("Sign Up")
 
 

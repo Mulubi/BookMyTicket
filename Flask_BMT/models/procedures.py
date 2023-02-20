@@ -1,12 +1,12 @@
 ''' Holds the class Procedure '''
 from Flask_BMT import db, models
-from .base_model import BaseModel, Base
+from .base_model import BaseModel, Base, BaseModelMixin
 import sqlalchemy
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 
 
-class Procedure(BaseModel, Base):
+class Procedure(db.Model, BaseModelMixin):
     ''' Object representation of a procedure '''
     if models.storage_type == 'db':
         __tablename__ = "procedures"

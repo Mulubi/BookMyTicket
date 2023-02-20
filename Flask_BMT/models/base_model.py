@@ -18,14 +18,20 @@ else:
     Base = object
 
 
+class BaseModelMixin(object):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
 class BaseModel():
     """The BaseModel class from which future classes will be derived"""
-    if models.storage_type == "db":
-        id = db.Column(db.String(128), primary_key=True)
-        created_at = db.Column(
-            DateTime, default=datetime.utcnow, nullable=False)
-        updated_at = db.Column(
-            DateTime, default=datetime.utcnow, nullable=False)
+    #__abstract__ = True
+    #if models.storage_type == "db":
+        #id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
+        #created_at = db.Column(
+            #DateTime, default=datetime.utcnow, nullable=False)
+        #updated_at = db.Column(
+            #DateTime, default=datetime.utcnow, nullable=False)
 
     @classmethod
     def get(cls, id):
