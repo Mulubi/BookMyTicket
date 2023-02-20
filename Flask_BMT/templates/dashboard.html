@@ -4,10 +4,88 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="newLogo.png">
+    <link rel="shortcut icon" href="./images/newLogo.png">
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: 10vh 80vh 7vh;
+            grid-gap: 3px;
+        }
+        .header {
+            grid-column: span 12;
+            border: 1px solid black;
+        }
+        .menu {
+            grid-column: span 2;
+
+            border: 1px solid black;
+        }
+        .body {
+            grid-column: span 10;
+            border: 1px solid black;
+        }
+        .footer {
+            grid-column: span 12;
+            border: 1px solid black;
+            text-align: center;
+            text-justify: center;
+        }
+        #menu-item {
+            border: 1px solid black;
+            height: 5vh;
+        }
+        #body-sect {
+            border: 1px solid black;
+            height: 30vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
+        #body-2 {
+            border: 1px solid black;
+            height: 50vh;
+        }
+        .box {
+            border: 1px solid black;
+            width: 30vh;
+            height: 20vh;
+            border-radius: 8px;
+        }
+    </style>
     <title>Dashboard</title>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="header">
+            <img src="./images/newLogo.png">
+        </div>
+        <div class="menu">
+            <div id="menu-item"></div>
+            <div id="menu-item"></div>
+            <div id="menu-item"></div>
+            <div id="menu-item"></div>
+            <div id="menu-item"></div>
+            <div id="menu-item"></div>
+            <div id="menu-item"></div>
+            <div id="menu-item"></div>
+            <div id="menu-item"></div>
+        </div>
+        <div class="body">
+            <section id="body-sect">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </section>
+            <section id="body-2">
+
+            </section>
+        </div>
+        <div class="footer">
+            Copyright@bookMyTicket <script type="text/javascript"> document.write(new Date().getFullYear());</script>. All rights reserved.
+        </div>
+    </div>
 </body>
 </html>
