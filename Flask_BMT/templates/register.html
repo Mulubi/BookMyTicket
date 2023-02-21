@@ -132,7 +132,7 @@ body {
 
             <div class="form">
                 
-                <form  method="POST" class="form" id="form">
+                <form  method="POST" action="{{ url_for('main.register') }}" class="form" id="form">
                     {{ form.hidden_tag() }}
                     <h2 style="color:black">Sign Up Form</h2>
                     <div class="inputBox">
