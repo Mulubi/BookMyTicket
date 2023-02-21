@@ -34,6 +34,10 @@ def home_page():
 def about_page():
     return render_template("about.html", title="About-page")
 
+@main.route('/theatre_list')
+def lists():
+    return render_template("lists.html", title="Theatre-lists")
+
 @main.route('/user/<username>')
 def user(username):
     return '<h1> Hello, {}!</h1>'.format(username)

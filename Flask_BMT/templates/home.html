@@ -11,7 +11,7 @@
   </head>
 </head>
 <body style="overflow-x: hidden;">
-    <nav class="navbar fixed-top bg-white shadow">
+    <nav class="navbar fixed-top bg-white shadow"
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
             <img type="image/png" src="./static/images/newLogo.png">
@@ -61,8 +61,8 @@
                     Automating theatre bookings.</h5>
                     <p class="lead text-center text-md-center text-muted mt-3">The easiest way to book a theatre session and view the current theatre lists.</p>
                     <div class="text-md-center text-center mt-5">
-                        <a href="login.html" class="btn btn-primary shadow lift me-1">Theatre Lists</a>
-                        <a href="register.html" class="btn btn-primary-soft shadow lift">Get started --></a>
+                        <a href="{{ url_for('main.lists') }}" class="btn btn-primary shadow lift me-1">Theatre Lists</a>
+                        <a href="{{ url_for('main.register') }}" class="btn btn-primary-soft shadow lift">Get started --></a>
                     </div>
                 </div>
             </div>
