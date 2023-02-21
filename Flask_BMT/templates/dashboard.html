@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="./images/newLogo.png">
     <style>
+        body {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
         .container {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
@@ -18,8 +21,9 @@
         }
         .menu {
             grid-column: span 2;
-
             border: 1px solid black;
+            text-align: center;
+            color: black;
         }
         .body {
             grid-column: span 10;
@@ -34,6 +38,7 @@
         #menu-item {
             border: 1px solid black;
             height: 5vh;
+            line-height: 4vh;
         }
         #body-sect {
             border: 1px solid black;
@@ -62,15 +67,15 @@
             <img type="image/png" src="./static/images/newLogo.png">
         </div>
         <div class="menu">
-            <div id="menu-item"></div>
-            <div id="menu-item"></div>
-            <div id="menu-item"></div>
-            <div id="menu-item"></div>
-            <div id="menu-item"></div>
-            <div id="menu-item"></div>
-            <div id="menu-item"></div>
-            <div id="menu-item"></div>
-            <div id="menu-item"></div>
+            <div id="menu-item">Dashboard</div>
+            <div id="menu-item">Theatre rooms</div>
+            <div id="menu-item">Surgeons</div>
+            <div id="menu-item">Anaesthetists</div>
+            <div id="menu-item">Nurses</div>
+            <div id="menu-item">Procedures</div>
+            <div id="menu-item">Users</div>
+            <div id="menu-item">Settings</div>
+            <div id="menu-item">Logout</div>
         </div>
         <div class="body">
             <section id="body-sect">
