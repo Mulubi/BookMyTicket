@@ -98,7 +98,7 @@ body {
 <body>
 	<div class="login-page">
 		<div class="form-login">
-			<form method="GET" action="">
+			<form method="POST" action="{{ url_for('main.login') }}">
         <div class="inputBox">
           {{ form.email.label() }}
           {{ form.email(class="form-control", placeholder="Email Address") }}

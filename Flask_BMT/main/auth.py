@@ -25,13 +25,7 @@ def register():
 @main.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    if form.validate_on_submit():
-        if form.email.data == 'admin@gmail.com' and form.password.data == 'password':
-            flash(f'You have been logged in as Admin!', 'success')
-        return redirect(url_for('main.home_page'))
-    else:
-        flash(f'Login Unsuccessful. Please check username and password', 'danger')
-    #return redirect(url_for("main.home_page"))
+    return redirect(url_for("main.home_page"))
     return render_template("login.html", form=form, title="Login-page")
     # return redirect(url_for("main.lists"))
     
