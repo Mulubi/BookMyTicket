@@ -17,28 +17,24 @@
         }
         .header {
             grid-column: span 12;
-            border: 1px solid black;
         }
         .menu {
             grid-column: span 2;
-            border: 1px solid black;
-            text-align: center;
+            text-align: start;
             color: #293855;
         }
         .body {
             grid-column: span 10;
-            border: 1px solid black;
         }
         .footer {
             grid-column: span 12;
-            border: 1px solid black;
             text-align: center;
             text-justify: center;
         }
         #menu-item {
-            border: 1px solid black;
             height: 5vh;
             line-height: 4vh;
+            margin-top: 1.5em;
         }
         #body-sect {
             height: 30vh;
@@ -48,7 +44,6 @@
             align-items: center;
         }
         #body-2 {
-            border: 1px solid black;
             height: 50vh;
         }
         .box {
@@ -63,6 +58,7 @@
     <div class="container">
         <div class="header">
             <img type="image/png" src="./static/images/newLogo.png">
+            <h1 style="color: #4265d6;">Admin Dashboard</h1>
         </div>
         <div class="menu">
             <div id="menu-item">Dashboard</div>
@@ -77,10 +73,22 @@
         </div>
         <div class="body">
             <section id="body-sect">
-                <div class="box" style="background-color: #c2e7c9;"></div>
-                <div class="box" style="background-color: #f2ac20;"></div>
-                <div class="box" style="background-color: #4265d6;"></div>
-                <div class="box" style="background-color: #293855;"></div>
+                <div class="box" style="background-color: #c2e7c9; text-align: center;">
+                    <h1 id="pro-el"><b>4</b></h1>
+                    <p>Ongoing Procedures</p>
+                </div>
+                <div class="box" style="background-color: #f2ac20; text-align: center;">
+                    <h1 id="book-el"><b>7</b></h1>
+                    <p>Daily Bookings</p>
+                </div>
+                <div class="box" style="background-color: #4265d6; text-align: center;">
+                    <h1 id="upro-el"><b>3</b></h1>
+                    <p>Upcoming Procedures</p>
+                </div>
+                <div class="box" style="background-color: #293855; text-align: center; color: #ffffff;">
+                    <h1 id="user-el"><b>5</b></h1>
+                    <p>Users</p>
+                </div>
             </section>
             <section id="body-2">
 
@@ -90,5 +98,13 @@
             Copyright@bookMyTicket <script type="text/javascript"> document.write(new Date().getFullYear());</script>. All rights reserved.
         </div>
     </div>
+    <script>
+        // selecting the box elements in the body section
+        let proEl = document.getElementById("pro-el")
+        let bookEl = document.getElementById("bool-el")
+        let uProEl = document.getElementById("upro-el")
+        let userEl = document.getElementById("user-el")
+
+    </script>
 </body>
 </html>
