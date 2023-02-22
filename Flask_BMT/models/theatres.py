@@ -1,13 +1,14 @@
 ''' Holds the class Theatre '''
 from Flask_BMT import db, models
-from .base_model import BaseModel, Base
+from .base_model import BaseModel, Base, BaseModelMixin
 import sqlalchemy
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 
 
-class Theatre(BaseModel, Base):
+class Theatre(db.Model, BaseModelMixin):
     ''' Object representation of a theatre '''
+    __abstract__ = True
     if models.storage_type == 'db':
         __tablename__ = "theatres"
         name = Column(String(128), unique=True, nullable=False)

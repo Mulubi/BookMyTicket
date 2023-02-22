@@ -3,7 +3,7 @@ from Flask_BMT import db, models
 from Flask_BMT.models.base_model import BaseModel, Base, BaseModelMixin
 from sqlalchemy import Column, String, DateTime
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from .. import login_manager
 
 class User(db.Model, BaseModelMixin):
     ''' Object representation of a user '''
@@ -12,7 +12,7 @@ class User(db.Model, BaseModelMixin):
         __tablename__ = "users"
         first_name = db.Column(db.String(128), nullable=False)
         last_name = db.Column(db.String(128), unique=True, nullable=False)
-        email = db.Column(String(128), nullable=False)
+        email = db.Column(String(128), unique=True, index=True, nullable=False)
         password_hash = db.Column(db.String(128), nullable=False)
     else:
         first_name = ""
@@ -37,3 +37,8 @@ class User(db.Model, BaseModelMixin):
 
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
