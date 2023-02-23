@@ -6,8 +6,9 @@ from sqlalchemy import Column, String, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
 
-class Anaesthetist(BaseModel, Base):
+class Anaesthetist(db.Model, BaseModelMixin):
     ''' Object representation of an anaesthetist '''
+    __abstract__ = True
     if models.storage_type == 'db':
         __tablename__ = "anaesthetists"
         name = Column(String(128), unique=True, nullable=False)

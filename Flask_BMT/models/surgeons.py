@@ -1,13 +1,14 @@
 ''' Holds the class Surgeon '''
 from Flask_BMT import db, models
-from .base_model import BaseModel, Base
+from .base_model import BaseModel, Base, BaseModelMixin
 import sqlalchemy
 from sqlalchemy import Column, String, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
 
-class Surgeon(BaseModel, Base):
+class Surgeon(db.Model, BaseModelMixin):
     ''' Object representation of a surgeon '''
+    __abstract__ = True
     if models.storage_type == 'db':
         __tablename__ = "surgeons"
         name = Column(String(128), unique=True, nullable=False)
