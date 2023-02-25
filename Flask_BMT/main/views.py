@@ -29,7 +29,6 @@ def index():
 def home_page():
     return render_template("home.html", title="Home-page")
 
-
 @main.route('/about')
 def about_page():
     return render_template("about.html", title="About-page")

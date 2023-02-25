@@ -5,14 +5,14 @@ from ..patients import Patient
 from ..procedures import Procedure
 from ..surgeons import Surgeon
 from ..theatres import Theatre
-from ..users import User
+# from ..users import User
 from ..anaesthetists import Anaesthetist
 from os import getenv
 from hashlib import md5
 
 classes = {"Patient": Patient, "Procedure": Procedure,
            "Surgeon": Surgeon, "Theatre": Theatre,
-           "User": User, "Anaesthetist": Anaesthetist}
+           "Anaesthetist": Anaesthetist}
 
 
 class FileStorage:

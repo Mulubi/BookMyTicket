@@ -27,16 +27,16 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+                  <a class="nav-link active" aria-current="page" href="{{ url_for('main.home_page') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="about.html">About</a>
+                  <a class="nav-link" href="{{ url_for('main.about_page') }}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
+                    <a class="nav-link" href="{{ url_for('main.login') }}">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html">Theatre Lists</a>
+                    <a class="nav-link" href="{{ url_for('main.lists') }}">Theatre Lists</a>
                 </li>
               </ul>
               <form class="d-flex mt-3" role="search">
