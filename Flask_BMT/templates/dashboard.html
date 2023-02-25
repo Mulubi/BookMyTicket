@@ -46,11 +46,24 @@
         }
         #body-2 {
             height: 50vh;
+            margin: auto;
+            padding: 10%;
         }
         .box {
             width: 30vh;
             height: 20vh;
             border-radius: 8px;
+        }
+        table, th, td {
+            border: 1px solid white;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        th, td {
+            background-color: #96D4D4;
+        }
+        table {
+            width: 90%;
         }
     </style>
     <title>Dashboard</title>
@@ -93,7 +106,33 @@
             </section>
             <section id="body-2">
                 <h2 style="text-align: center; color: blue;">Theatre Lists</h2>
-                
+                <form>
+                    <input type="time" placeholder="Time">
+                    <input type="text" placeholder="Patient Name">
+                    <input type="text" placeholder="Procedure">
+                    <input type="text" placeholder="Surgeon Name">
+                    <input type="text" placeholder="Anaesthetist Name">
+                    <input type="text" placeholder="Requisitions">
+                </form>
+                <table>
+                    <p>THEATRE ONE</p>
+                        <tr>
+                            <th>TIME</th>
+                            <th>NAME</th>
+                            <th>PROCEDURE</th>
+                            <th>SURGEON</th>
+                            <th>ANAESTHETIST</th>
+                            <th>REQ</th>
+                        </tr>
+                        <tr>
+                            <td>8AM</td>
+                            <td>JOHN DOE</td>
+                            <td>BLEPHAROPLASTY</td>
+                            <td>DR CARSON</td>
+                            <td>DR FRED</td>
+                            <td>IMPLANTS BY HARLEYS</td>
+                        </tr>
+                </table>
             </section>
         </div>
         <div class="footer">
