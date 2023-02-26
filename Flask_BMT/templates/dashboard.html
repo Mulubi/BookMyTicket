@@ -69,6 +69,12 @@
             border: none;
             border-bottom: solid 1px #4265d6;
         }
+        button {
+            height: 30px;
+            width: 150px;
+            background-color: white;
+            border: 1px solid #4265d6;
+        }
     </style>
     <title>Dashboard</title>
 </head>
@@ -110,15 +116,16 @@
             </section>
             <section id="body-2">
                 <h2 style="text-align: center; color: blue;">Theatre Lists</h2>
-                <form>
-                    <input type="time" placeholder="Time">
-                    <input type="text" placeholder="Patient Name">
-                    <input type="text" placeholder="Procedure">
-                    <input type="text" placeholder="Surgeon Name">
-                    <input type="text" placeholder="Anaesthetist Name">
-                    <input type="text" placeholder="Requisitions">
+                <form method="post" action="form">
+                    <input type="time" id="time-el" placeholder="Time">
+                    <input type="text" id="patient-el" placeholder="Patient Name">
+                    <input type="text" id="procedure-el" placeholder="Procedure">
+                    <input type="text" id="surgeon-el" placeholder="Surgeon Name">
+                    <input type="text" id="anaes-el" placeholder="Anaesthetist Name">
+                    <input type="text" id="req-el" placeholder="Requisitions">
+                    <button type="submit">+ Add</button>
                 </form>
-                <table>
+                <table id="listTable">
                     <p>THEATRE ONE</p>
                         <tr>
                             <th>TIME</th>
@@ -150,6 +157,67 @@
         let uProEl = document.getElementById("upro-el")
         let userEl = document.getElementById("user-el")
 
+        // form handling
+        let theatreList = [];
+
+        function addLists() {
+            let timeEl = document.getElementById('time-el').value;
+            let patientEl = document.getElementById('patient-el').value;
+            let procedureEl = document.getElementById('procedure-el').value;
+            let surgeonEl = document.getElementById('surgeon-el').value;
+            let anaesEl = document.getElementById('anaes-el').value;
+            let reqEl = document.getElementById('req-el').value;
+
+            let theatreListObj = {
+                time: timeEl,
+                patient: patientEl,
+                procedure: procedureEl,
+                surgeon: surgeonEl,
+                anaesthetist: anaesEl,
+                requisition: reqEl
+            };
+
+            theatreLists.push(theatreListObj);
+
+            displayTheatreLists();
+
+        }
+
+        function displayTheatreLists() {
+            let procedureList = document.getElementById('listTable');
+
+            procedureList.innerHTML = "";
+
+            for(let i = 0; i < theatreList.length; i++) {
+                let list = theartreList[i];
+
+                let row = document.createElement('tr');
+
+                let timeCell = document.createElement('td');
+                timeCell.textContent = list.time;
+                row.appendChild('timeCell');
+
+                let patientCell = document.createElement('td');
+                patientCell.textContent = list.patient;
+                row.appendChild('patientCell');
+
+                let procedureCell = document.createElement('td');
+                procedureCell.textContent = list.procedure;
+                row.appendChild('procedureCell');
+
+                let surgeonCell = document.createElement('td');
+                surgeonCell.textContent = list.surgeon;
+                row.appendChild('surgeonCell');
+
+                let anaesCell = document.createElement('td');
+                anaesCell.textContent = list.anaesthetist;
+                row.appendChild('anaesCell');
+
+                let reqCell = document.createElement('td');
+                reqCell.textContent = list.requisition;
+                row.appendChild('reqCell');
+            }
+        }
     </script>
 </body>
 </html>
