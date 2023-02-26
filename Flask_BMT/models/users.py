@@ -2,23 +2,21 @@
 from Flask_BMT import db, models
 from Flask_BMT.models.base_model import BaseModel, Base, BaseModelMixin
 from sqlalchemy import Column, String, DateTime
+import sqlalchemy
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import query
 from werkzeug.security import generate_password_hash, check_password_hash
 from .. import login_manager
+from flask_login import UserMixin
 
-class User(db.Model, BaseModelMixin):
+class User(UserMixin, db.Model):
     ''' Object representation of a user '''
-    __abstract__ = True
-    if models.storage_type == 'db':
-        __tablename__ = "users"
-        first_name = db.Column(db.String(128), nullable=False)
-        last_name = db.Column(db.String(128), unique=True, nullable=False)
-        email = db.Column(String(128), unique=True, index=True, nullable=False)
-        password_hash = db.Column(db.String(128), nullable=False)
-    else:
-        first_name = ""
-        last_name = ""
-        email = ""
-        password_hash = ""
+    __tablename__ = "users"
+    id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
+    first_name = db.Column(db.String(128), nullable=False)
+    last_name = db.Column(db.String(128), unique=True, nullable=False)
+    email = db.Column(String(128), unique=True, index=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
 
     def __repr__(self):
         return f"User('{self.first_name}', '{self.last_name}', '{self.email}')"
@@ -26,6 +24,31 @@ class User(db.Model, BaseModelMixin):
     def __init__(self, *args, **kwargs):
         ''' Initializes the user '''
         super().__init__(*args, **kwargs)
+
+    def save(self):
+        """updates the attribute 'updated_at' with the current datetime"""
+        self.updated_at = datetime.utcnow()
+        models.storage.new(self)
+        models.storage.save()
+
+    def to_dict(self, save_fs=None):
+        """returns a dictionary containing all keys/values of the instance"""
+        new_dict = self.__dict__.copy()
+        if "created_at" in new_dict:
+            new_dict["created_at"] = new_dict["created_at"].strftime(time)
+        if "updated_at" in new_dict:
+            new_dict["updated_at"] = new_dict["updated_at"].strftime(time)
+        new_dict["__class__"] = self.__class__.__name__
+        if "_sa_instance_state" in new_dict:
+            del new_dict["_sa_instance_state"]
+        if save_fs is None:
+            if "password" in new_dict:
+                del new_dict["password"]
+        return new_dict
+
+    def delete(self):
+        """delete the current instance from the storage"""
+        models.storage.delete(self)
 
     @property
     def password(self):
