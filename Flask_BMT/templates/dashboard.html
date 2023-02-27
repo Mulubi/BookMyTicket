@@ -126,7 +126,7 @@
                     <button type="submit">+ Add</button>
                 </form>
                 <table id="listTable">
-                    <p>THEATRE ONE</p>
+                    <thead>
                         <tr>
                             <th>TIME</th>
                             <th>NAME</th>
@@ -135,15 +135,12 @@
                             <th>ANAESTHETIST</th>
                             <th>REQ</th>
                         </tr>
-                        <tr>
-                            <td>8AM</td>
-                            <td>JOHN DOE</td>
-                            <td>BLEPHAROPLASTY</td>
-                            <td>DR CARSON</td>
-                            <td>DR FRED</td>
-                            <td>IMPLANTS BY HARLEYS</td>
-                        </tr>
+                    </thead>
+                    <tbody id="procedure__list">
+                        
+                    </tbody>
                 </table>
+
             </section>
         </div>
         <div class="footer">
@@ -151,73 +148,58 @@
         </div>
     </div>
     <script>
-        // selecting the box elements in the body section
-        let proEl = document.getElementById("pro-el")
-        let bookEl = document.getElementById("bool-el")
-        let uProEl = document.getElementById("upro-el")
-        let userEl = document.getElementById("user-el")
+        
+    const form = document.querySelector('form');
+    const timeInput = document.querySelector('#time-el');
+    const patientInput = document.querySelector('#patient-el');
+    const procedureInput = document.querySelector('#procedure-el');
+    const surgeonInput = document.querySelector('#surgeon-el');
+    const anaesthetistInput = document.querySelector('#anaes-el');
+    const reqInput = document.querySelector('#req-el');
+    const tableBody = document.querySelector('#procedure__list');
 
-        // form handling
-        let theatreList = [];
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
 
-        function addLists() {
-            let timeEl = document.getElementById('time-el').value;
-            let patientEl = document.getElementById('patient-el').value;
-            let procedureEl = document.getElementById('procedure-el').value;
-            let surgeonEl = document.getElementById('surgeon-el').value;
-            let anaesEl = document.getElementById('anaes-el').value;
-            let reqEl = document.getElementById('req-el').value;
+      // create a new row
+      const newRow = document.createElement('tr');
 
-            let theatreListObj = {
-                time: timeEl,
-                patient: patientEl,
-                procedure: procedureEl,
-                surgeon: surgeonEl,
-                anaesthetist: anaesEl,
-                requisition: reqEl
-            };
+      // create new cells for the row
+      const timeCell = document.createElement('td');
+      const patientCell = document.createElement('td');
+      const procedureCell = document.createElement('td');
+      const surgeonCell = document.createElement('td');
+      const anaesthetistCell = document.createElement('td');
+      const reqCell = document.createElement('td');
 
-            theatreLists.push(theatreListObj);
+      // add text to the new cells
+      timeCell.textContent = timeInput.value;
+      patientCell.textContent = patientInput.value;
+      procedureCell.textContent = procedureInput.value;
+      surgeonCell.textContent = surgeonInput.value;
+      anaesthetistCell.textContent = anaesthetistInput.value;
+      reqCell.textContent = reqInput.value;
 
-            displayTheatreLists();
+      // add the new cells to the new row
+      newRow.appendChild(timeCell);
+      newRow.appendChild(patientCell);
+      newRow.appendChild(procedureCell);
+      newRow.appendChild(surgeonCell);
+      newRow.appendChild(anaesthetistCell);
+      newRow.appendChild(reqCell);
 
-        }
+      // add the new row to the table body
+      tableBody.appendChild(newRow);
 
-        function displayTheatreLists() {
-            let procedureList = document.getElementById('listTable');
+      // clear the input fields
+      timeInput.value = '';
+      patientInput.value = '';
+      procedureInput.value = '';
+      surgeonInput.value = '';
+      anaesthetistInput.value = '';
+      reqInput.value = '';
+    });
+  </script>
+  </body>
 
-            procedureList.innerHTML = "";
-
-            for(let i = 0; i < theatreList.length; i++) {
-                let list = theartreList[i];
-
-                let row = document.createElement('tr');
-
-                let timeCell = document.createElement('td');
-                timeCell.textContent = list.time;
-                row.appendChild('timeCell');
-
-                let patientCell = document.createElement('td');
-                patientCell.textContent = list.patient;
-                row.appendChild('patientCell');
-
-                let procedureCell = document.createElement('td');
-                procedureCell.textContent = list.procedure;
-                row.appendChild('procedureCell');
-
-                let surgeonCell = document.createElement('td');
-                surgeonCell.textContent = list.surgeon;
-                row.appendChild('surgeonCell');
-
-                let anaesCell = document.createElement('td');
-                anaesCell.textContent = list.anaesthetist;
-                row.appendChild('anaesCell');
-
-                let reqCell = document.createElement('td');
-                reqCell.textContent = list.requisition;
-                row.appendChild('reqCell');
-            }
-        }
-    </script>
-</body>
 </html>
