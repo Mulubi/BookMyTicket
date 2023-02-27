@@ -193,6 +193,12 @@
       // add the new row to the table body
       tableBody.appendChild(newRow);
 
+     // storing the values to localStorage
+     const myBookings =[timeInput.value, patientInput.value, procedureInput.value, surgeonInput.value, anaesthetistInput.value, reqInput.value];
+     localStorage.setItem('values', JSON.stringify(myBookings))
+     let storedBookings= localStorage.getItem('values');
+     console.log(storedBookings)
+
       // clear the input fields
       timeInput.value = '';
       patientInput.value = '';
@@ -200,6 +206,7 @@
       surgeonInput.value = '';
       anaesthetistInput.value = '';
       reqInput.value = '';
+
     });
   </script>
   </body>
