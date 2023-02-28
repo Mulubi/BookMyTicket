@@ -1,5 +1,5 @@
 ''' Holds the class User '''
-from Flask_BMT import db, models
+from Flask_BMT import db, models, bcrypt
 from Flask_BMT.models.base_model import BaseModel, Base, BaseModelMixin
 from sqlalchemy import Column, String, DateTime
 import sqlalchemy
@@ -52,13 +52,14 @@ class User(UserMixin, db.Model):
 
     @property
     def password(self):
+        return self.password
         raise AttributeError('password is not a readable attribute')
 
     @password.setter
-    def password(self, password):
-        self.password_hash = generate_password_hash(password)
+    def password(self, plain_password):
+        self.password_hash = bcrypt.generate_password_hash(plain_password).decode('utf-8')
 
-    def verify_password(self, password):
+    def verify_password(self, plain_password):
         return check_password_hash(self.password_hash, password)
 
 

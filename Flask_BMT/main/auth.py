@@ -6,13 +6,17 @@ from Flask_BMT.models.users import User
 from flask import Flask, render_template, url_for, flash, redirect
 from flask_login import login_required, logout_user
 
+@main.before_app_first_request
+def create_tables():
+    db.create_all()
+
 
 @main.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(first_name=form.first_name.data, last_name=form.last_name.data, email=form.email.data, password=hashed_password)
+        #hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(first_name=form.first_name.data, last_name=form.last_name.data, email=form.email.data, password=form.password.data)
         db.session.add(user)
         db.session.commit()
         flash(f"Your account has been created successfully!", "success")
