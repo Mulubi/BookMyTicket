@@ -33,12 +33,21 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('main.about_page') }}">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('main.login') }}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('main.lists') }}">Theatre Lists</a>
-                </li>
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.lists') }}">Theatre Lists</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.logout') }}">Logout</a>
+                        </li>
+                    {% else %}
+                         <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.login') }}">Login</a>
+                        </li>
+                    {% endif %}
+               
+                
               </ul>
               <form class="d-flex mt-3" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
