@@ -3,12 +3,8 @@ from . import main
 from .forms import RegistrationForm, LoginForm
 from .. import db, bcrypt
 from Flask_BMT.models.users import User
-from flask import Flask, render_template, url_for, flash, redirect
-from flask_login import login_required, logout_user
-
-@main.before_app_first_request
-def create_tables():
-    db.create_all()
+from flask import Flask, render_template, url_for, flash, redirect, request
+from flask_login import login_required, login_user, logout_user
 
 
 @main.route('/register', methods=['GET', 'POST'])
@@ -19,6 +15,9 @@ def register():
         user = User(first_name=form.first_name.data, last_name=form.last_name.data, email=form.email.data, password=form.password.data)
         db.session.add(user)
         db.session.commit()
+        #conn.execute("INSERT INTO users (first_name, last_name, email, password_hash) VALUES (?, ?, ?, ?)", (first_name, last_name, email, password_hash))
+        #conn.commit()
+
         flash(f"Your account has been created successfully!", "success")
         return redirect(url_for("main.login"))
     if form.errors != {}:
@@ -32,13 +31,13 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-        if user is not None and user.verify_password(form.password.data):
-            login_user(user, form.remember_me.data)
-            next = request.args.get('next')
-            if next is None or not next.startswith('/'):
-                next = url_for('main.home')
-            return redirect(next)
-        flash("Invalid username or password.")
+        if user and user.verify_password(attempted_password=form.password.data):
+            login_user(user)
+            flash(f"Success! You are logged in as: {user.first_name}", category='success')
+            return redirect(url_for('main.home_page'))
+        else:
+            flash("Invalid username or password.", category='danger')
+
     return render_template("login.html", form=form, title="Login-page")
     # return redirect(url_for("main.lists"))
 

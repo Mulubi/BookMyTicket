@@ -9,7 +9,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from .. import login_manager
 from flask_login import UserMixin
 
-class User(UserMixin, db.Model):
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+class User(db.Model, UserMixin):
     ''' Object representation of a user '''
     __tablename__ = "users"
     id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
@@ -59,10 +63,5 @@ class User(UserMixin, db.Model):
     def password(self, plain_password):
         self.password_hash = bcrypt.generate_password_hash(plain_password).decode('utf-8')
 
-    def verify_password(self, plain_password):
-        return check_password_hash(self.password_hash, password)
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+    def verify_password(self, attempted_password):
+        return bcrypt.check_password_hash(self.password_hash, attempted_password)
