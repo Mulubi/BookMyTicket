@@ -28,17 +28,22 @@ def register():
 
 @main.route('/login', methods=['GET', 'POST'])
 def login():
+    email = None
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-        if user and user.verify_password(attempted_password=form.password.data):
-            login_user(user)
-            flash(f"Success! You are logged in as: {user.first_name}", category='success')
-            return redirect(url_for('main.home_page'))
-        else:
-            flash("Invalid username or password.", category='danger')
-
-    return render_template("login.html", form=form, title="Login-page")
+        if user is None:
+            user = User(email=form.email.data, password=form.email.data)
+            db.session.add(user)
+            db.session.commit()
+        email = form.email.data
+        form.email.data = ''
+        form.password.data = ''
+        flash(f"Success! You are logged in!", category='success')
+    else:
+        flash("Invalid username or password.", category='danger')
+        our_users = User.query.order_by(User.created_at)
+    return render_template("login.html", form=form, email=email, our_users=our_users, title="Login-page")
     # return redirect(url_for("main.lists"))
 
 

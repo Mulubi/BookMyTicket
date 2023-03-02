@@ -5,6 +5,7 @@ from .forms import RegistrationForm, LoginForm
 from .. import db, bcrypt
 # from models import User
 from Flask_BMT.models.users import User
+from flask_login import login_required, login_user, logout_user
 
 # from jinja2 import FileSystemLoader
 

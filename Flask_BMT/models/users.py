@@ -8,60 +8,33 @@ from sqlalchemy.orm import query
 from werkzeug.security import generate_password_hash, check_password_hash
 from .. import login_manager
 from flask_login import UserMixin
+from datetime import datetime
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-class User(db.Model, UserMixin):
+class User(db.Model):
     ''' Object representation of a user '''
     __tablename__ = "users"
     id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
-    first_name = db.Column(db.String(128), nullable=False)
+    first_name = db.Column(db.String(128), unique=True, nullable=False)
     last_name = db.Column(db.String(128), unique=True, nullable=False)
     email = db.Column(String(128), unique=True, index=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    def __repr__(self):
-        return f"User('{self.first_name}', '{self.last_name}', '{self.email}')"
-
-    def __init__(self, *args, **kwargs):
-        ''' Initializes the user '''
-        super().__init__(*args, **kwargs)
-
-    def save(self):
-        """updates the attribute 'updated_at' with the current datetime"""
-        self.updated_at = datetime.utcnow()
-        models.storage.new(self)
-        models.storage.save()
-
-    def to_dict(self, save_fs=None):
-        """returns a dictionary containing all keys/values of the instance"""
-        new_dict = self.__dict__.copy()
-        if "created_at" in new_dict:
-            new_dict["created_at"] = new_dict["created_at"].strftime(time)
-        if "updated_at" in new_dict:
-            new_dict["updated_at"] = new_dict["updated_at"].strftime(time)
-        new_dict["__class__"] = self.__class__.__name__
-        if "_sa_instance_state" in new_dict:
-            del new_dict["_sa_instance_state"]
-        if save_fs is None:
-            if "password" in new_dict:
-                del new_dict["password"]
-        return new_dict
-
-    def delete(self):
-        """delete the current instance from the storage"""
-        models.storage.delete(self)
 
     @property
     def password(self):
-        return self.password
-        raise AttributeError('password is not a readable attribute')
+        raise AttributeError('password is not a readable attribute!')
 
     @password.setter
-    def password(self, plain_password):
-        self.password_hash = bcrypt.generate_password_hash(plain_password).decode('utf-8')
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
 
-    def verify_password(self, attempted_password):
-        return bcrypt.check_password_hash(self.password_hash, attempted_password)
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+    def __repr__(self):
+        return f"User('{self.first_name}', '{self.last_name}', '{self.email}')"
