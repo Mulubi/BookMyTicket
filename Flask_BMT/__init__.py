@@ -5,9 +5,11 @@ from flask_bcrypt import Bcrypt
 from config import config
 from flask_login import LoginManager
 import sqlite3
+from flask_migrate import Migrate
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
+migrate = Migrate()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
 login_manager.login_view = 'main.login'
@@ -23,6 +25,7 @@ def create_app(config_name):
 	db.init_app(app)
 	bcrypt.init_app(app)
 	login_manager.init_app(app)
+	migrate.init_app(app, db)
 	
 	from Flask_BMT.main import auth, errors, views
 

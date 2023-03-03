@@ -12,6 +12,7 @@ import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
+
 classes = {"Patient": Patient, "Procedure": Procedure,
            "Surgeon": Surgeon, "Theatre": Theatre,
            "User": User, "Anaesthetist": Anaesthetist}

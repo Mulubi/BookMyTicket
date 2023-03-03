@@ -12,7 +12,7 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         #hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(first_name=form.first_name.data, last_name=form.last_name.data, email=form.email.data, password=form.password.data)
+        user = User(first_name=form.first_name.data, last_name=form.last_name.data, email=form.email.data, password_hash=form.password_hash.data)
         db.session.add(user)
         db.session.commit()
         #conn.execute("INSERT INTO users (first_name, last_name, email, password_hash) VALUES (?, ?, ?, ?)", (first_name, last_name, email, password_hash))
@@ -33,17 +33,18 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user is None:
-            user = User(email=form.email.data, password=form.email.data)
+            # hashed_password = generate_password_hash(form.password_hash, 'hash202')
+            user = User(email=form.email.data, password_hash=form.password_hash.data)
             db.session.add(user)
             db.session.commit()
         email = form.email.data
         form.email.data = ''
-        form.password.data = ''
+        form.password_hash.data = ''
         flash(f"Success! You are logged in!", category='success')
+        return redirect(url_for("main.home_page"))
     else:
         flash("Invalid username or password.", category='danger')
-        our_users = User.query.order_by(User.created_at)
-    return render_template("login.html", form=form, email=email, our_users=our_users, title="Login-page")
+    return render_template("login.html", form=form, email=email, title="Login-page")
     # return redirect(url_for("main.lists"))
 
 
