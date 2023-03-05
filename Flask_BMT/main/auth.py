@@ -30,8 +30,8 @@ def register():
     return render_template("register.html", form=form, title="Registration-page")
 
 
-@main.route('/login', methods=['GET', 'POST'])
-def login():
+@main.route('/login2', methods=['GET', 'POST'])
+def login2():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -46,6 +46,25 @@ def login():
             flash("Invalid username or password.", category='danger')
     return render_template("login.html", form=form)
     # return redirect(url_for("main.lists"))
+
+@main.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user is not None and user.verify_password(form.password_hash.data):
+            login_user(user)
+            next = request.args.get('next')
+            if next is None or not next.startswith('/'):
+                next = url_for('main.home_page')
+                flash("Success! You are logged in!", category='success')
+            else:
+                flash('Wrong Password.Try again!')
+            return redirect(next)
+        else:
+            flash("Invalid username or password.", category='danger')
+    return render_template("login.html", form=form)
+
 
 @login_manager.user_loader
 def load_user(user_id):
