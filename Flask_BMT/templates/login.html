@@ -105,7 +105,7 @@ body {
   {% endfor %}
 	<div class="login-page">
 		<div class="form-login">
-			<form method="POST" action="{{ url_for('main.login') }}">
+			<form method="POST">
         <div class="inputBox">
           {{ form.hidden_tag() }}
           {{ form.email.label() }}

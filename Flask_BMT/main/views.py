@@ -27,6 +27,7 @@ def index():
 
 @main.route('/')
 @main.route('/home')
+@login_required
 def home_page():
     return render_template("home.html", title="Home-page")
 
@@ -35,6 +36,7 @@ def about_page():
     return render_template("about.html", title="About-page")
 
 @main.route('/theatre_list')
+@login_required
 def lists():
     return render_template("lists.html", title="Theatre-lists")
 
@@ -43,15 +45,7 @@ def user(username):
     return '<h1> Hello, {}!</h1>'.format(username)
 
 
-
-@main.route('/registerpage', methods=['GET', 'POST'])
-def register_page():
-	form = RegistrationForm()
-	if form.validate_on_submit():
-		hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-		user = User(username=form.username.data, email=form.email.data, password=hashed_password)
-		db.session.add(User)
-		db.session.commit()
-		flash(f"Your account has been created successfully!", "success")
-		return redirect(url_for("login_page"))
-	return render_template("register.html", form=form, title="Registration-page")
+@main.route('/dashboard')
+@login_required
+def dashboard():
+    return render_template("dashboard.html")

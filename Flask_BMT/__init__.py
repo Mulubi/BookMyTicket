@@ -14,6 +14,7 @@ bcrypt = Bcrypt()
 login_manager = LoginManager()
 login_manager.login_view = 'main.login'
 
+
 def create_app(config_name):
 	app = Flask(__name__)
 	app.config.from_object(config[config_name])
@@ -27,7 +28,7 @@ def create_app(config_name):
 	login_manager.init_app(app)
 	migrate.init_app(app, db)
 	
-	from Flask_BMT.main import auth, errors, views
+	from Flask_BMT.main import auth, errors, views, test
 
 	from .main import main as main_blueprint
 	app.register_blueprint(main_blueprint)
