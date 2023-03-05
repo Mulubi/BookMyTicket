@@ -16,8 +16,9 @@ class Patient(db.Model, BaseModelMixin):
         contact_info = db.Column(db.String(50), nullable=False)
         # theatres = relationship("Theatre", backref="patient")
         # theatre_id = Column(String(128), ForeignKey("theatres.id"), nullable=False)
-        # current_procedure = relationship("Procedure", backref="current_patient")
-        procedure_id = db.Column(db.String(128), db.ForeignKey("procedures.id"), nullable=False)
+        current_procedure = relationship("Procedure", backref="current_patient")
+        procedure_id = db.Column(db.Integer(128), db.ForeignKey("procedures.id"), nullable=False)
+
     else:
         name = ""
         contact_info = ""
