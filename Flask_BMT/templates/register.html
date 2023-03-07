@@ -132,7 +132,7 @@ body {
 
             <div class="form">
                 
-                <form  method="POST" action="{{ url_for('main.register') }}" class="form" id="form">
+                <form  method="POST">
                     {{ form.hidden_tag() }}
                     <h2 style="color:black">Sign Up Form</h2>
                     <div class="inputBox">
@@ -154,8 +154,8 @@ body {
                     </div>
 
                     <div class="inputBox">
-                        {{ form.password.label() }}
-                        {{ form.password(class="form-control", placeholder="Password") }}
+                        {{ form.password_hash.label() }}
+                        {{ form.password_hash(class="form-control", placeholder="Password") }}
                         <div class="error"></div>
                     </div>
                     <div class="inputBox">

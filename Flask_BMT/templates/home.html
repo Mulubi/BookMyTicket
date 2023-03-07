@@ -39,11 +39,18 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.dashboard') }}">Dashboard</a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('main.logout') }}">Logout</a>
                         </li>
                     {% else %}
                          <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('main.login') }}">Login</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.register') }}">Register</a>
                         </li>
                     {% endif %}
                
@@ -71,7 +78,7 @@
                     <p class="lead text-center text-md-center text-muted mt-3">The easiest way to book a theatre session and view the current theatre lists.</p>
                     <div class="text-md-center text-center mt-5">
                         <a href="{{ url_for('main.lists') }}" class="btn btn-primary shadow lift me-1">Theatre Lists</a>
-                        <a href="{{ url_for('main.register') }}" class="btn btn-primary-soft shadow lift">Get started --></a>
+                        <a href="{{ url_for('main.register') }}" class="btn btn-primary-soft shadow lift">Get started</a>
                     </div>
                 </div>
             </div>

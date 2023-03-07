@@ -12,6 +12,7 @@ import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
+
 classes = {"Patient": Patient, "Procedure": Procedure,
            "Surgeon": Surgeon, "Theatre": Theatre,
            "User": User, "Anaesthetist": Anaesthetist}
@@ -24,17 +25,17 @@ class DBStorage:
 
     def __init__(self):
         ''' Initializes the DBStorage object '''
-       # BMT_MYSQL_USER = getenv("BMT_MYSQL_USER")
-       # BMT_MYSQL_PWD = getenv("BMT_MYSQL_PWD")
-       # BMT_MYSQL_HOST = getenv("BMT_MYSQL_HOST")
-       # BMT_MYSQL_DB = getenv("BMT_MYSQL_DB")
-       # BMT_ENV = getenv("BMT_ENV")
-        # self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}".
-                                     #  format(BMT_MYSQL_USER,
-                                            #  BMT_MYSQL_PWD,
-                                            #  BMT_MYSQL_HOST,
-                                            #  BMT_MYSQL_DB))
-        self.__engine = create_engine('sqlite:///site.db')
+        BMT_MYSQL_USER = getenv("BMT_MYSQL_USER")
+        BMT_MYSQL_PWD = getenv("BMT_MYSQL_PWD")
+        BMT_MYSQL_HOST = getenv("BMT_MYSQL_HOST")
+        BMT_MYSQL_DB = getenv("BMT_MYSQL_DB")
+        BMT_ENV = getenv("BMT_ENV")
+        self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}".
+                                     format(BMT_MYSQL_USER,
+                                             BMT_MYSQL_PWD,
+                                             BMT_MYSQL_HOST,
+                                             BMT_MYSQL_DB))
+        Base.metadata.create_all(self.__engine)
 
     def all(self, cls=None):
         """query on the current database session"""
