@@ -1,24 +1,23 @@
 ''' Holds the class Procedure '''
 from Flask_BMT import db, models
-from .base_model import BaseModel, Base, BaseModelMixin
+from .base_model import BaseModel, Base
 import sqlalchemy
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 
 
-class Procedure(db.Model, BaseModelMixin):
+class Procedure(BaseModel, Base):
     ''' Object representation of a procedure '''
-    __abstract__ = True
+    #__abstract__ = True
     if models.storage_type == 'db':
         __tablename__ = "procedures"
-        name = db.Column(String(128), unique=True, nullable=False)
-        # patients = relationship("Patient", backref="procedure")
-        # theatres = relationship("Theatre", backref="procedure", lazy=True)
-        # theatre_id = Column(String(128), ForeignKey("theatres.id"), nullable=False)
-        patient_id = db.Column(Integer(128), db.ForeignKey("patients.id"), nullable=False)
-        patients = db.relationship("Patient", backref="procedure")
+        name = Column(String(128), unique=True, nullable=False)
+        requirements = Column(String(1024), nullable=True)
+        #patients = relationship("Patient", secondary=patient_bookings, backref=backref("procedures", lazy="dynamic"),
+            #lazy="dynamic")
     else:
         name = ""
+        requirements = ""
 
     def __repr__(self):
         return f"Procedure('{self.name}'"

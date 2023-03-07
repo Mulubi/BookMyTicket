@@ -1,6 +1,6 @@
 ''' Holds the class User '''
 from Flask_BMT import db, models, bcrypt
-from Flask_BMT.models.base_model import BaseModel, Base, BaseModelMixin
+from Flask_BMT.models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, DateTime
 import sqlalchemy
 from sqlalchemy.ext.declarative import declarative_base
