@@ -28,7 +28,7 @@ def create_app(config_name):
 	login_manager.init_app(app)
 	migrate.init_app(app, db)
 	
-	from Flask_BMT.main import auth, errors, views, test
+	from Flask_BMT.main import auth, errors, views, test, decorator
 
 	from .main import main as main_blueprint
 	app.register_blueprint(main_blueprint)

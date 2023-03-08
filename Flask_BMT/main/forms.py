@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, ValidationError
+from wtforms import DateTimeField, StringField, PasswordField, SubmitField, BooleanField, ValidationError
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 from Flask_BMT.models.users import User
 
@@ -33,3 +33,13 @@ class PasswordForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired(), Length(1, 64), Email()])
     password_hash = PasswordField("Password", validators=[DataRequired()])
     submit = SubmitField("Login")
+
+
+class TheatreForm(FlaskForm):
+    procedure_time = DateTimeField(validators=[DataRequired()])
+    patient_name = StringField(validators=[DataRequired()])
+    procedure_name = StringField(validators=[DataRequired()])
+    surgeon = StringField(validators=[DataRequired()])
+    anaesthetist = StringField(validators=[DataRequired()])
+    submit = SubmitField("Create Booking")
+

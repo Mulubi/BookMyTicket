@@ -35,6 +35,7 @@ class DBStorage:
                                              BMT_MYSQL_PWD,
                                              BMT_MYSQL_HOST,
                                              BMT_MYSQL_DB))
+        #self.__engine = create_engine("sqlite:///site.db")
         Base.metadata.create_all(self.__engine)
 
     def all(self, cls=None):

@@ -10,6 +10,13 @@
     <title>Lists</title>
 </head>
 <body>
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    
+    {% endfor %}
     <nav class="navbar fixed-top bg-white shadow">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
@@ -49,6 +56,42 @@
       </nav>
     <h1 class="display-5 text-primary text-center">THEATRE LISTS</h1>
     <p class="text-center" id="date-el"></p>
+        <form  method="POST">
+                {{ form.hidden_tag() }}
+                <h2 style="color:black">Booking Form</h2>
+                <div class="inputBox">
+                    {{ form.procedure_time.label() }}
+                    {{ form.procedure_time(class="form-control") }}
+                    <div class="error"></div>
+                </div>
+
+                <div class="inputBox">
+                    {{ form.patient_name.label() }}
+                    {{ form.patient_name(class="form-control") }}
+                    <div class="error"></div>
+                </div>
+
+                <div class="inputBox">
+                    {{ form.procedure_name.label() }}
+                    {{ form.procedure_name(class="form-control") }}
+                    <div class="error"></div>
+                </div>
+
+                <div class="inputBox">
+                    {{ form.surgeon.label() }}
+                    {{ form.surgeon(class="form-control") }}
+                    <div class="error"></div>
+                </div>
+                <div class="inputBox">
+                    {{ form.anaesthetist.label() }}
+                    {{ form.anaesthetist(class="form-control") }}
+                    <div class="error"></div>
+                </div>
+                
+                <div class="submitButton">
+                    {{ form.submit(class="btn btn-primary") }}
+                </div> 
+                </form>
     <table class="table table-bordered text-center">
         <p>THEATRE ONE</p>
         <thead>
