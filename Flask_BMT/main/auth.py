@@ -82,4 +82,3 @@ def logout():
 def secret():
     return "Only authenticated users are allowed"
 
-

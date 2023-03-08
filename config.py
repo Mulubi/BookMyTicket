@@ -17,7 +17,7 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = "mysql://bmt_dev:bmt_dev_pwd2023!@localhost/bmt_dev_db"
-        #SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'
+    #SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'
     # 'SQLALCHEMY_DATABASE_URI' = 'sqlite:///' + os.path.join(basedir, 'site.db')
 
 class TestingConfig(Config):
