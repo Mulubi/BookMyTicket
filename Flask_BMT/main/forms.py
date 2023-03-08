@@ -37,9 +37,9 @@ class PasswordForm(FlaskForm):
 
 class TheatreForm(FlaskForm):
     procedure_time = DateTimeField(validators=[DataRequired()])
-    patient_name = StringField(validators=[DataRequired()])
-    procedure_name = StringField(validators=[DataRequired()])
-    surgeon = StringField(validators=[DataRequired()])
-    anaesthetist = StringField(validators=[DataRequired()])
+    patient_name = StringField("Name of patient", validators=[DataRequired()])
+    procedure_name = StringField("Procedure", validators=[DataRequired()])
+    surgeon = StringField("Surgeon", validators=[DataRequired()])
+    anaesthetist = StringField("Anaesthetist", validators=[DataRequired()])
     submit = SubmitField("Create Booking")
 

@@ -2,8 +2,9 @@
 from Flask_BMT import db, models
 from .base_model import BaseModel, Base
 import sqlalchemy
-from sqlalchemy import Column, String, String, ForeignKey, Table
+from sqlalchemy import Column, String, String, DateTime, ForeignKey, Table
 from sqlalchemy.orm import relationship
+from datetime import datetime
 
 if models.storage_type == 'db':
     theatre_procedure = Table('theatre_procedure', Base.metadata,
@@ -40,4 +41,27 @@ class Theatre(BaseModel, Base):
 
     def __init__(self, *args, **kwargs):
         ''' Initializes the theatre '''
+        super().__init__(*args, **kwargs)
+
+
+class TheatreList(db.Model):
+    ''' Object representation of theatre one bookings'''
+    #__abstract__ = True
+    __tablename__ = "theatre_lists"
+    id = db.Column(db.String(60), primary_key=True)
+    created_at = db.Column(
+            DateTime, default=datetime.utcnow)
+    updated_at = db.Column(
+            DateTime, default=datetime.utcnow)
+    procedure_time = db.Column(db.String(60), nullable=False, index=True)
+    patient_name = db.Column(db.String(128), nullable=False, unique=True, index=True)
+    procedure_name = db.Column(db.String(128), nullable=False, index=True)
+    surgeon = db.Column(db.String(128), nullable=False, index=True)
+    anaesthetist = db.Column(db.String(128), nullable=False, index=True)
+
+    def __repr__(self):
+        return f"TheatreList('{self.procedure_time}', '{self.patient_name}', '{self.procedure_name}', '{self.surgeon}', '{self.anaesthetist}')"
+
+    def __init__(self, *args, **kwargs):
+        ''' Initializes the list '''
         super().__init__(*args, **kwargs)

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+<br>
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	{{ message }}
+	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    
+{% endfor %}
+
+{% if patient_name %}
+    <h1> Patient Added </h1>
+    <br>
+{% for our_booking in our_bookings %}
+    {{ our_booking.id }} {{ our_booking.procedure_time }} - {{ our_booking.patient_name }} - {{ our_booking.procedure_name }} - {{ our_booking.surgeon }} - {{ our_booking.anaesthetist }}
+{% endfor %}
+
+{% else %}   
+
+    <h1>THEATRE LISTS</h1>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+                <h2 style="color:black">Booking Form</h2>
+                <div class="inputBox">
+                    {{ form.procedure_time.label() }}
+                    {{ form.procedure_time(class="form-control") }}
+                    <div class="error"></div>
+                </div>
+
+                <div class="inputBox">
+                    {{ form.patient_name.label() }}
+                    {{ form.patient_name(class="form-control") }}
+                    <div class="error"></div>
+                </div>
+
+                <div class="inputBox">
+                    {{ form.procedure_name.label() }}
+                    {{ form.procedure_name(class="form-control") }}
+                    <div class="error"></div>
+                </div>
+
+                <div class="inputBox">
+                    {{ form.surgeon.label() }}
+                    {{ form.surgeon(class="form-control") }}
+                    <div class="error"></div>
+                </div>
+                <div class="inputBox">
+                    {{ form.anaesthetist.label() }}
+                    {{ form.anaesthetist(class="form-control") }}
+                    <div class="error"></div>
+                </div>
+                <br>
+                <div>
+                    
+                    {{ form.submit(class="btn btn-primary") }}
+                </div> 
+        </form>
+
+<br> <br>
+
+{% for our_booking in our_bookings %}
+    {{ our_booking.id }} {{ our_booking.procedure_time }} - {{ our_booking.patient_name }} - {{ our_booking.procedure_name }} - {{ our_booking.surgeon }} - {{ our_booking.anaesthetist }}
+{% endfor %}
+<br>
+{% endif %}
+{% endblock %}
+<br>

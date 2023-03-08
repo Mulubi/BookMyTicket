@@ -1,3 +1,4 @@
+from Flask_BMT.models.roles import Permission
 from flask import Blueprint
 
 main = Blueprint('main', __name__)

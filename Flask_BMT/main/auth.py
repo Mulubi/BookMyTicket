@@ -38,7 +38,7 @@ def login2():
         if user:
             if check_password_hash(user.password_hash, form.password_hash.data):
                 login_user(user)
-                flash("Success! You are logged in!", category='success')
+                #flash("Success! You are logged in!", category='success')
                 return redirect(url_for('main.home_page'))
             else:
                 flash('Wrong Password.Try again!')
@@ -57,7 +57,7 @@ def login():
             next = request.args.get('next')
             if next is None or not next.startswith('/'):
                 next = url_for('main.home_page')
-                flash("Success! You are logged in!", category='success')
+                #flash("Success! You are logged in!", category='success')
             else:
                 flash('Wrong Password.Try again!')
             return redirect(next)

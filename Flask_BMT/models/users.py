@@ -1,4 +1,5 @@
 ''' Holds the class User '''
+from flask import current_app
 from Flask_BMT import db, models, bcrypt
 from Flask_BMT.models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, DateTime
@@ -19,7 +20,7 @@ class User(db.Model, UserMixin):
     email = db.Column(String(128), unique=True, index=True, nullable=False)
     password_hash = db.Column(db.String(128))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    role_id = db.Column(db.String(60), db.ForeignKey('roles.id'), nullable=False)
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
 
     @property
@@ -36,13 +37,13 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User('{self.first_name}', '{self.last_name}', '{self.email}')"
 
-    def __init__(self, **kwargs):
-        super(User, self).__init__(**kwargs)
-        if self.role is None:
-            if self.email == current_app.config['FLASKY_ADMIN']:
-                self.role = Role.query.filter_by(name='Administrator').first()
-            if self.role is None:
-                self.role = Role.query.filter_by(default=True).first()
+    #def __init__(self, **kwargs):
+        s#uper(User, self).__init__(**kwargs)
+        #if self.role is None:
+            #if self.email == current_app.config['FLASKY_ADMIN']:
+                #self.role = Role.query.filter_by(name='Administrator').first()
+            #if self.role is None:
+                #self.role = Role.query.filter_by(default=True).first()
 
     def can(self, perm):
         return self.role is not None and self.role.has_permission(perm)

@@ -22,11 +22,14 @@ class Permission:
 class Role(db.Model):
     ''' Object representation of a role '''
     __tablename__ = "roles"
-    id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(60), unique=True)
     default = db.Column(db.Boolean, default=False, index=True)
     permissions = db.Column(db.Integer)
     users = db.relationship('User', backref='role', lazy='dynamic')
+
+    def __repr__(self):
+        return f"Role('{self.name}')"
 
     def __init__(self, **kwargs):
     	super(Role, self).__init__(**kwargs)
