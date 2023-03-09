@@ -13,12 +13,27 @@
 
 
 <br>
-
-		{{ booking.procedure_time }}<br>
-		{{ booking.patient_name }}<br>
-		{{ booking.procedure_name }}<br>
-		{{ booking.surgeon }}<br>
-		{{ booking.anaesthetist }}<br><br>
+		<table style="width: 100%; border: solid 1px black;">
+			<thead>
+				<tr style="border: solid 1px black;">
+					<th>TIME</th>
+					<th>NAME</th>
+					<th>PROCEDURE</th>
+					<th>SURGEON</th>
+					<th>ANAESTHETIST</th>
+					<th>REQ</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr style="border: solid 1px black;">
+					<td>{{ booking.procedure_time }}</td>
+					<td>{{ booking.patient_name }}</td>
+					<td>{{ booking.procedure_name }}</td>
+					<td>{{ booking.surgeon }}</td>
+					<td>{{ booking.anaesthetist }}</td>
+				</tr>
+			</tbody>
+		</table>
 
 		<a href="{{ url_for('main.edit_theatre_list', id=booking.id) }}" class="btn btn-outline-secondary btn-sm"> Edit Booking </a>
 		<a href="{{ url_for('main.theatre_lists') }}" class="btn btn-outline-secondary btn-sm"> Back </a>
