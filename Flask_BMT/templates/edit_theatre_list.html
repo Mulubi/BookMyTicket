@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+<br>
+{% block content %}
+
+	{% for message in get_flashed_messages() %}
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		{{ message }}
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+	    
+	{% endfor %} 
+
+
+<br>
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <br>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+                <h2 style="color:black">Booking Form</h2>
+                <div class="inputBox">
+                    {{ form.procedure_time.label() }}
+                    {{ form.procedure_time(class="form-control") }}
+                    <div class="error"></div>
+                </div>
+
+                <div class="inputBox">
+                    {{ form.patient_name.label() }}
+                    {{ form.patient_name(class="form-control") }}
+                    <div class="error"></div>
+                </div>
+
+                <div class="inputBox">
+                    {{ form.procedure_name.label() }}
+                    {{ form.procedure_name(class="form-control") }}
+                    <div class="error"></div>
+                </div>
+
+                <div class="inputBox">
+                    {{ form.surgeon.label() }}
+                    {{ form.surgeon(class="form-control") }}
+                    <div class="error"></div>
+                </div>
+                <div class="inputBox">
+                    {{ form.anaesthetist.label() }}
+                    {{ form.anaesthetist(class="form-control") }}
+                    <div class="error"></div>
+                </div>
+                <br>
+                <div>
+                    
+                    {{ form.submit(class="btn btn-primary") }}
+                </div> 
+        </form>
+</div>
+		<a href="{{ url_for('main.theatre_lists') }}" class="btn btn-outline-secondary btn-sm"> Back </a>
+		<hr><br>
+
+{% endblock %}

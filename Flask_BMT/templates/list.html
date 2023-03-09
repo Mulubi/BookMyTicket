@@ -11,19 +11,17 @@
 	    
 	{% endfor %} 
 
-<h1> Theatre Lists </h1>
+
 <br>
 
-	{% for booking in bookings %}
 		{{ booking.procedure_time }}<br>
 		{{ booking.patient_name }}<br>
 		{{ booking.procedure_name }}<br>
 		{{ booking.surgeon }}<br>
 		{{ booking.anaesthetist }}<br><br>
 
-		<a href="{{ url_for('main.theatre_list', id=booking.id) }}" class="btn btn-outline-secondary btn-sm"> Show requirements </a>
 		<a href="{{ url_for('main.edit_theatre_list', id=booking.id) }}" class="btn btn-outline-secondary btn-sm"> Edit Booking </a>
+		<a href="{{ url_for('main.theatre_lists') }}" class="btn btn-outline-secondary btn-sm"> Back </a>
 		<hr><br>
-	{% endfor %}
 
 {% endblock %}

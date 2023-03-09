@@ -5,6 +5,7 @@ import sqlalchemy
 from sqlalchemy import Column, String, String, DateTime, ForeignKey, Table
 from sqlalchemy.orm import relationship
 from datetime import datetime
+import uuid
 
 if models.storage_type == 'db':
     theatre_procedure = Table('theatre_procedure', Base.metadata,
@@ -48,7 +49,7 @@ class TheatreList(db.Model):
     ''' Object representation of theatre one bookings'''
     #__abstract__ = True
     __tablename__ = "theatre_lists"
-    id = db.Column(db.String(60), primary_key=True)
+    id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
     created_at = db.Column(
             DateTime, default=datetime.utcnow)
     updated_at = db.Column(
@@ -59,9 +60,13 @@ class TheatreList(db.Model):
     surgeon = db.Column(db.String(128), nullable=False, index=True)
     anaesthetist = db.Column(db.String(128), nullable=False, index=True)
 
-    def __repr__(self):
-        return f"TheatreList('{self.procedure_time}', '{self.patient_name}', '{self.procedure_name}', '{self.surgeon}', '{self.anaesthetist}')"
-
     def __init__(self, *args, **kwargs):
-        ''' Initializes the list '''
+        """Initialization of the base model"""
         super().__init__(*args, **kwargs)
+
+    def __repr__(self):
+        return f"TheatreList('{self.id}', '{self.procedure_time}', '{self.patient_name}', '{self.procedure_name}', '{self.surgeon}', '{self.anaesthetist}')"
+
+    def save(self):
+        """updates the attribute 'updated_at' with the current datetime"""
+        self.updated_at = datetime.utcnow()

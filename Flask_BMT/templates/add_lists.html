@@ -9,18 +9,11 @@
 	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
     
-{% endfor %}
+{% endfor %}  
 
-{% if patient_name %}
-    <h1> Patient Added </h1>
+<h1>Add Theatre List</h1>
+<div class="shadow p-3 mb-5 bg-body rounded">
     <br>
-{% for our_booking in our_bookings %}
-    {{ our_booking.id }} {{ our_booking.procedure_time }} - {{ our_booking.patient_name }} - {{ our_booking.procedure_name }} - {{ our_booking.surgeon }} - {{ our_booking.anaesthetist }}
-{% endfor %}
-
-{% else %}   
-
-    <h1>THEATRE LISTS</h1>
         <form method="POST">
             {{ form.hidden_tag() }}
                 <h2 style="color:black">Booking Form</h2>
@@ -58,13 +51,17 @@
                     {{ form.submit(class="btn btn-primary") }}
                 </div> 
         </form>
-
-<br> <br>
-
-{% for our_booking in our_bookings %}
-    {{ our_booking.id }} {{ our_booking.procedure_time }} - {{ our_booking.patient_name }} - {{ our_booking.procedure_name }} - {{ our_booking.surgeon }} - {{ our_booking.anaesthetist }}
-{% endfor %}
+</div>
 <br>
-{% endif %}
+<table class="table table-dark table-striped table-bordered table-striped">
+{% for our_booking in our_bookings %}
+    <tr>
+        <td>{{ our_booking.id }} - {{ our_booking.procedure_time }} - {{ our_booking.patient_name }} - {{ our_booking.procedure_name }} - {{ our_booking.surgeon }} - {{ our_booking.anaesthetist }} </td>
+    </tr>
+    <br>
+    <br>
+{% endfor %}
+</table>
+<br>
 {% endblock %}
 <br>
