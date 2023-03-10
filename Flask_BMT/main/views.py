@@ -6,25 +6,13 @@ from .. import db, bcrypt
 # from models import User
 from Flask_BMT.models.users import User
 from Flask_BMT.models.theatres import TheatreList
-from flask_login import login_required, login_user, logout_user
+from flask_login import login_required, login_user, logout_user, current_user
 from Flask_BMT.main.decorator import admin_required, permission_required
 
 # from jinja2 import FileSystemLoader
 
 # app.jinja_loader = FileSystemLoader('BookMyTicket/Flask_BMT/templates')
 
-
-@main.route('/user', methods=['GET', 'POST'])
-def index():
-    form = NameForm
-    if form.validate_on_submit():
-        # ...
-        return redirect(url_for('index'))
-    return render_template('index.html',
-                           form=form,
-                           name=session.get('name'),
-                           known=session.get('known', False),
-                           current_time=datetime.utcnow())
 
 
 @main.route('/')
@@ -100,7 +88,7 @@ def add_lists():
 @main.route('/user/<username>', methods=['GET', 'POST'])
 @login_required
 def user_page(username):
-    username = None
+    #username = None
     return render_template("user.html", username=username)
 
 
@@ -113,9 +101,14 @@ def dashboard():
 
 @main.route('/admin')
 @login_required
-@admin_required
+#@admin_required
 def admin_page():
-    return render_template("admin.html")
+    id = current_user.id
+    if id == 2:
+        return render_template("admin.html")
+    else:
+        flash("Sorry, you must be an admin. However, that doesn't stop you from checking the bookings today!")
+        return redirect(url_for('main.theatre_lists'))
 
 
 @main.route('/moderate')

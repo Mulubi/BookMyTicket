@@ -58,8 +58,8 @@ def login():
             if next is None or not next.startswith('/'):
                 next = url_for('main.home_page')
                 #flash("Success! You are logged in!", category='success')
-            else:
-                flash('Wrong Password.Try again!')
+            #else:
+                #flash('Wrong Password.Try again!')
             return redirect(next)
         else:
             flash("Invalid username or password.", category='danger')
