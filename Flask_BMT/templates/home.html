@@ -34,22 +34,33 @@
                   <a class="nav-link" href="{{ url_for('main.about_page') }}">About</a>
                 </li>
                     {% if current_user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('main.add_lists') }}">Add Theatre Lists</a>
-                        </li>
+                        
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('main.theatre_lists') }}">Theatre Lists</a>
+                        </li>
+
+
+                        {% if current_user.id == 2 %}
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.admin_page') }}">Admin</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.add_lists') }}">Add Theatre Lists</a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('main.dashboard') }}">Dashboard</a>
                         </li>
 
+                        {% endif %}
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('main.user_page', username='<username>') }}">User Profile</a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('main.logout') }}">Logout</a>
                         </li>
