@@ -35,6 +35,10 @@
                 </li>
                     {% if current_user.is_authenticated %}
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.add_lists') }}">Add Theatre Lists</a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('main.theatre_lists') }}">Theatre Lists</a>
                         </li>
 
@@ -42,6 +46,10 @@
                             <a class="nav-link" href="{{ url_for('main.dashboard') }}">Dashboard</a>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.user_page', username='<username>') }}">User Profile</a>
+                        </li>
+                        
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('main.logout') }}">Logout</a>
                         </li>

@@ -29,7 +29,6 @@ def index():
 
 @main.route('/')
 @main.route('/home')
-@login_required
 def home_page():
     return render_template("home.html", title="Home-page")
 
@@ -47,12 +46,14 @@ def theatre_lists():
 
 
 @main.route('/theatre-lists/<int:id>')
+@login_required
 def theatre_list(id):
     booking = TheatreList.query.get_or_404(id)
     return render_template("list.html", booking=booking)
 
 
 @main.route('/theatre-lists/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
 def edit_theatre_list(id):
     booking = TheatreList.query.get_or_404(id)
     form = TheatreAddForm()
@@ -97,6 +98,7 @@ def add_lists():
 
 
 @main.route('/user/<username>', methods=['GET', 'POST'])
+@login_required
 def user_page(username):
     username = None
     return render_template("user.html", username=username)
